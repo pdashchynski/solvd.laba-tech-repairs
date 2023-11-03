@@ -25,37 +25,27 @@ public class Interaction {
         Map<Item, Master> orderMap = new HashMap<Item, Master>();
 
         while (!isExit) {
-            int token = 0;
-            Person person = null;
             System.out.println("Do you wish to create a new person? (Y/N)");
             String createAnswer = in.next();
 
             switch (createAnswer) {
                 case "Y":
-                    System.out.println("Is that person male or female? (M/F)");
-                    String sexAnswer = in.next();
+                    System.out.println("What type of a person do you wish to create? (Client/Employee/Master/Partner)");
+                    String personType = in.next();
+                    Person person = pg.personGenerate(personType);
+                    System.out.println(person);
 
-                    if (sexAnswer.equals("M") | sexAnswer.equals("F")) {
-                        PersonGeneration.PersonWrap personWrap = pg.typeGenerate(sexAnswer);
-                        person = personWrap.getPerson();
-                        System.out.println(personWrap.getPerson());
-                        token = personWrap.getToken();
-                        System.out.println(token);
-                    } else {
-                        System.out.println("Please enter a correct response");
-                    }
-
-                    switch (token) {
-                        case 1:
+                    switch (personType) {
+                        case "Client":
                             clientList.add((Client) person);
                             break;
-                        case 2:
+                        case "Employee":
                             employeeList.add((Employee) person);
                             break;
-                        case 3:
+                        case "Master":
                             masterList.add((Master) person);
                             break;
-                        case 4:
+                        case "Partner":
                             partnerList.add((Partner) person);
                             break;
                         default:

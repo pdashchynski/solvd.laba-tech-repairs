@@ -10,129 +10,53 @@ public class PersonGeneration {
     private final String[] lastNameArray = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
     private final String[] occupationArray = new String[] {"Manager", "Administrator", "Cleaner"};
     private final String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
-
-/*    public String[] personBaseGenerate () {
-
-        Random random = new Random();
-        Scanner in = new Scanner(System.in);
-        String sexType = new String();
-        String firstName = new String();
-        String lastName = new String();
-        boolean isExit = false;
-
-        while (isExit) {
-            System.out.println("What sex is your person? (M/F)");
-            sexType = in.next();
-
-            switch (sexType) {
-                case "M":
-                    firstName = firstNameMaleArray[random.nextInt(firstNameMaleArray.length)];
-                    lastName = lastNameArray[random.nextInt(lastNameArray.length)];
-                    isExit = true;
-                    break;
-
-                case "F":
-                    firstName = firstNameFemaleArray[random.nextInt(firstNameFemaleArray.length)];
-                    lastName = lastNameArray[random.nextInt(lastNameArray.length)];
-                    isExit = true;
-                    break;
-
-                default:
-                    System.out.println("Please enter a correct response");
-                    break;
-            }
-        }
-        String[] basePersonArray = new String[] {sexType, firstName, lastName};
-        return basePersonArray;
-    }*/
-
-    public class PersonWrap {
-
-        private Person person;
-        private byte token;
-
-        public PersonWrap () {}
-
-        public PersonWrap (Person person, byte token) {
-            this.person = person;
-            this.token = token;
-        }
-
-        public Person getPerson() {
-            return person;
-        }
-
-        public void setPerson(Person person) {
-            this.person = person;
-        }
-
-        public byte getToken() {
-            return token;
-        }
-
-        public void setToken(byte token) {
-            this.token = token;
-        }
-    }
+    private final String[] sexArray = new String[] {"M", "F"};
+    Random random = new Random();
 
     public String personFirstNameMaleGenerate () {
-        Random random = new Random();
-        String firstNameMale = firstNameMaleArray[random.nextInt(firstNameMaleArray.length)];
-        return firstNameMale;
+        return firstNameMaleArray[random.nextInt(firstNameMaleArray.length)];
     }
 
     public String personFirstNameFemaleGenerate () {
-        Random random = new Random();
-        String firstNameFemale = firstNameFemaleArray[random.nextInt(firstNameFemaleArray.length)];
-        return firstNameFemale;
+        return firstNameFemaleArray[random.nextInt(firstNameFemaleArray.length)];
     }
 
     public String personLastNameGenerate () {
-        Random random = new Random();
-        String lastName = lastNameArray[random.nextInt(lastNameArray.length)];
-        return lastName;
+        return lastNameArray[random.nextInt(lastNameArray.length)];
     }
 
     public String personPassportIDGenerate () {
-        Random random = new Random();
-        String passportID = String.valueOf(random.nextInt(1000));
-        return passportID;
+        return String.valueOf(random.nextInt(1000));
     }
 
     public int personAgeGenerate () {
-        Random random = new Random();
-        int age = random.nextInt(100) + 18;
-        return age;
+        return random.nextInt(100) + 18;
     }
 
-    public PersonWrap typeGenerate (String sex) {
+    public char personSexGenerate () {
+        return sexArray[random.nextInt(sexArray.length)].charAt(0);
+    }
 
-        Random random = new Random();
+    public Person personGenerate (String personType) {
+
+        PersonGeneration pg = new PersonGeneration();
         Scanner in = new Scanner(System.in);
         String occupation = new String();
         String relation = new String();
         String firstName = new String();
-        char sexCh = sex.charAt(0);
+        char sexCh = personSexGenerate();
         int baseSalary = 1000;
-        byte token = 0;
-        boolean isExit = false;
-        PersonGeneration pg = new PersonGeneration();
         Person person = null;
 
-        if (sex.equals("M")) {
+        if (sexCh == 'M') {
             firstName = pg.personFirstNameMaleGenerate();
-        } else if (sex.equals("F")) {
+        } else if (sexCh == 'F') {
             firstName = pg.personFirstNameFemaleGenerate();
         }
-
-        while (!isExit) {
-            System.out.println("What type is your person? (Employee/Partner/Client)");
-            String personType = in.next();
 
             switch (personType) {
 
                 case "Client":
-                    token = 1;
                     boolean isOurClient = true;
                     person = new Client(
                             sexCh,
@@ -142,7 +66,6 @@ public class PersonGeneration {
                             pg.personAgeGenerate(),
                             isOurClient
                     );
-                    isExit = true;
                     break;
 
                 case "Employee":
@@ -150,10 +73,9 @@ public class PersonGeneration {
                     String masterAnswer = in.next();
 
                     if (masterAnswer.equals("Y")) {
-                        token = 3;
                         occupation = "Master";
                         int qualification = random.nextInt(10);
-                        int salary = baseSalary *qualification;
+                        int salary = baseSalary * qualification;
                         person = new Master(
                                 sexCh,
                                 firstName,
@@ -165,7 +87,6 @@ public class PersonGeneration {
                                 qualification
                         );
                     } else if (masterAnswer.equals("N")) {
-                        token = 2;
                         occupation = occupationArray[random.nextInt(occupationArray.length)];
                         int salary = baseSalary *(random.nextInt(10));
                         person = new Employee(
@@ -178,11 +99,9 @@ public class PersonGeneration {
                                 salary
                         );
                     }
-                    isExit = true;
                     break;
 
                 case "Partner":
-                    token = 4;
                     String partnerCompanyName = partnerCompanyNameArray[random.nextInt(partnerCompanyNameArray.length)];
 
                     if (partnerCompanyName.equals("Foodies")) {
@@ -199,14 +118,13 @@ public class PersonGeneration {
                             partnerCompanyName,
                             relation
                     );
-                    isExit = true;
                     break;
 
                 default:
                     System.out.println("Please enter a correct response");
                     break;
             }
-        }
-        return new PersonWrap(person, token);
+
+        return person;
     }
 }

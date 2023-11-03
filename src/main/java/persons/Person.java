@@ -1,20 +1,30 @@
 package main.java.persons;
 
+import java.util.ArrayList;
+
 public abstract class Person {
 
+    private char sex;
     private String firstName;
     private String lastName;
     private String passportID;
     private int age;
-    private char sex;
 
     public Person() {}
 
-    public Person(String firstName, String lastName, String passportID, int age, char sex) {
+    public Person(char sex, String firstName, String lastName, String passportID, int age) {
+        this.sex = sex;
         this.firstName = firstName;
         this.lastName = lastName;
         this.passportID = passportID;
         this.age = age;
+    }
+
+    public char getSex() {
+        return sex;
+    }
+
+    public void setSex(char sex) {
         this.sex = sex;
     }
 
@@ -50,20 +60,12 @@ public abstract class Person {
         this.age = age;
     }
 
-    public char getSex() {
-        return sex;
-    }
-
-    public void setSex(char sex) {
-        this.sex = sex;
-    }
-
     @Override
     public String toString() {
-        return  "firstName='" + firstName + '\'' +
+        return  "sex=" + sex  + '\'' +
+                ",firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", passportID='" + passportID + '\'' +
-                ", age=" + age +
-                ", sex=" + sex + " ";
+                ", age=" + age + " ";
     }
 }

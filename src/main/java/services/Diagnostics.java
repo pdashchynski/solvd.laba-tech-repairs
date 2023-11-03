@@ -4,8 +4,8 @@ public class Diagnostics extends Service {
 
     public Diagnostics () {}
 
-    public Diagnostics (String name, int price) {
-        super(name, price);
+    public Diagnostics (String name, int cost) {
+        super(name, cost);
     }
 
     @Override

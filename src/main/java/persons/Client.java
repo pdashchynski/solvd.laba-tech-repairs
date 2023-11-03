@@ -11,8 +11,8 @@ public class Client extends Person {
 
     public Client() {}
 
-    public Client(String firstName, String lastName, String passportID, int age, char sex, boolean isOurClient) {
-        super(firstName, lastName, passportID, age, sex);
+    public Client(char sex, String firstName, String lastName, String passportID, int age, boolean isOurClient) {
+        super(sex, firstName, lastName, passportID, age);
         this.isOurClient = isOurClient;
     }
 

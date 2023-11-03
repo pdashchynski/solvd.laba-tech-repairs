@@ -7,8 +7,8 @@ public class Repair extends Service{
 
     public Repair() {}
 
-    public Repair(String name, int price, String component, String operation) {
-        super(name, price);
+    public Repair(String name, int cost, String component, String operation) {
+        super(name, cost);
         this.component = component;
         this.operation = operation;
     }

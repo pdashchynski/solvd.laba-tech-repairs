@@ -6,8 +6,8 @@ public class Cleaning extends Service{
 
     public Cleaning() {}
 
-    public Cleaning(String name, int price, boolean isThorough) {
-        super(name, price);
+    public Cleaning(String name, int cost, boolean isThorough) {
+        super(name, cost);
         this.isThorough = isThorough;
     }
 

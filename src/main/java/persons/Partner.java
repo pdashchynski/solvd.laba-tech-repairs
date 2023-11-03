@@ -7,8 +7,8 @@ public class Partner extends Person {
 
     public Partner() {}
 
-    public Partner(String firstName, String lastName, String passportID, int age, char sex, String companyName, String relation) {
-        super(firstName, lastName, passportID, age, sex);
+    public Partner(char sex, String firstName, String lastName, String passportID, int age, String companyName, String relation) {
+        super(sex, firstName, lastName, passportID, age);
         this.companyName = companyName;
         this.relation = relation;
     }

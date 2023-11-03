@@ -47,4 +47,25 @@ public abstract class Item {
     public void setManufactureDate(String manufactureDate) {
         this.manufactureDate = manufactureDate;
     }
+
+    @Override
+    public String toString() {
+        return "brandName=" + brandName  + '\'' +
+                ",modelName='" + modelName + '\'' +
+                ", colour='" + colour + '\'' +
+                ", manufactureDate='" + manufactureDate + " ";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 0;
+        return result;
+    }
+
 }

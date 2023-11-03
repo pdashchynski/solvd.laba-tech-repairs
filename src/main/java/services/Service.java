@@ -3,13 +3,14 @@ package main.java.services;
 public abstract class Service {
 
     private String name;
-    private int price;
+    private int cost;
+    protected int baseTime = 24;
 
     public Service() {}
 
-    public Service(String name, int price) {
+    public Service(String name, int cost) {
         this.name = name;
-        this.price = price;
+        this.cost = cost;
     }
 
     public String getName() {
@@ -20,12 +21,12 @@ public abstract class Service {
         this.name = name;
     }
 
-    public int getPrice() {
-        return price;
+    public int getCost() {
+        return cost;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
     public abstract void action();

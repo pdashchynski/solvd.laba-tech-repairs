@@ -2,23 +2,23 @@ package main.java.persons;
 
 public class Employee extends Person{
 
-    private String position;
+    private String occupation;
     private int salary;
 
     public Employee() {}
 
-    public Employee(String firstName, String lastName, String passportID, int age, char sex, String position, int salary) {
-        super(firstName, lastName, passportID, age, sex);
-        this.position = position;
+    public Employee(char sex, String firstName, String lastName, String passportID, int age, String occupation, int salary) {
+        super(sex, firstName, lastName, passportID, age);
+        this.occupation = occupation;
         this.salary = salary;
     }
 
-    public String getPosition() {
-        return position;
+    public String getOccupation() {
+        return occupation;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 
     public int getSalary() {
@@ -32,7 +32,7 @@ public class Employee extends Person{
     @Override
     public String toString() {
         return super.toString() +
-                "position='" + position + '\'' +
+                "position='" + occupation + '\'' +
                 ", salary=" + salary;
     }
 }

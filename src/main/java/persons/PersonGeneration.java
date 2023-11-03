@@ -5,12 +5,11 @@ import java.util.Scanner;
 
 public class PersonGeneration {
 
-    private String[] firstNameMaleArray = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
-    private String[] firstNameFemaleArray = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
-    private String[] lastNameArray = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
-    private String[] occupationArray = new String[] {"Manager", "Administrator", "Cleaner"};
-    private String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
-    private int baseSalary = 1000;
+    private final String[] firstNameMaleArray = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
+    private final String[] firstNameFemaleArray = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
+    private final String[] lastNameArray = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
+    private final String[] occupationArray = new String[] {"Manager", "Administrator", "Cleaner"};
+    private final String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
 
 /*    public String[] personBaseGenerate () {
 
@@ -47,6 +46,35 @@ public class PersonGeneration {
         return basePersonArray;
     }*/
 
+    public class PersonWrap {
+
+        private Person person;
+        private byte token;
+
+        public PersonWrap () {}
+
+        public PersonWrap (Person person, byte token) {
+            this.person = person;
+            this.token = token;
+        }
+
+        public Person getPerson() {
+            return person;
+        }
+
+        public void setPerson(Person person) {
+            this.person = person;
+        }
+
+        public byte getToken() {
+            return token;
+        }
+
+        public void setToken(byte token) {
+            this.token = token;
+        }
+    }
+
     public String personFirstNameMaleGenerate () {
         Random random = new Random();
         String firstNameMale = firstNameMaleArray[random.nextInt(firstNameMaleArray.length)];
@@ -77,59 +105,99 @@ public class PersonGeneration {
         return age;
     }
 
-    public Person typeGenerate () {
+    public PersonWrap typeGenerate (String sex) {
 
         Random random = new Random();
         Scanner in = new Scanner(System.in);
         String occupation = new String();
         String relation = new String();
+        String firstName = new String();
+        char sexCh = sex.charAt(0);
+        int baseSalary = 1000;
+        byte token = 0;
         boolean isExit = false;
         PersonGeneration pg = new PersonGeneration();
         Person person = null;
+
+        if (sex.equals("M")) {
+            firstName = pg.personFirstNameMaleGenerate();
+        } else if (sex.equals("F")) {
+            firstName = pg.personFirstNameFemaleGenerate();
+        }
 
         while (!isExit) {
             System.out.println("What type is your person? (Employee/Partner/Client)");
             String personType = in.next();
 
             switch (personType) {
+
+                case "Client":
+                    token = 1;
+                    boolean isOurClient = true;
+                    person = new Client(
+                            sexCh,
+                            firstName,
+                            pg.personLastNameGenerate(),
+                            pg.personPassportIDGenerate(),
+                            pg.personAgeGenerate(),
+                            isOurClient
+                    );
+                    isExit = true;
+                    break;
+
                 case "Employee":
                     System.out.println("Is that Employee one of our masters? (Y/N)");
                     String masterAnswer = in.next();
 
-                    if (masterAnswer == "Y") {
+                    if (masterAnswer.equals("Y")) {
+                        token = 3;
                         occupation = "Master";
                         int qualification = random.nextInt(10);
-                        int salary = baseSalary*qualification;
-                        person = new Master();
-                    } else if (masterAnswer == "N") {
+                        int salary = baseSalary *qualification;
+                        person = new Master(
+                                sexCh,
+                                firstName,
+                                pg.personLastNameGenerate(),
+                                pg.personPassportIDGenerate(),
+                                pg.personAgeGenerate(),
+                                occupation,
+                                salary,
+                                qualification
+                        );
+                    } else if (masterAnswer.equals("N")) {
+                        token = 2;
                         occupation = occupationArray[random.nextInt(occupationArray.length)];
-                        int salary = baseSalary*(random.nextInt(10));
-                        person = new Employee();
+                        int salary = baseSalary *(random.nextInt(10));
+                        person = new Employee(
+                                sexCh,
+                                firstName,
+                                pg.personLastNameGenerate(),
+                                pg.personPassportIDGenerate(),
+                                pg.personAgeGenerate(),
+                                occupation,
+                                salary
+                        );
                     }
                     isExit = true;
                     break;
 
                 case "Partner":
+                    token = 4;
                     String partnerCompanyName = partnerCompanyNameArray[random.nextInt(partnerCompanyNameArray.length)];
 
-                    if ( (partnerCompanyName.equals("AMD")) | (partnerCompanyName.equals("Nvidia")) | (partnerCompanyName.equals("Intel")) ) {
-                        relation = "Supplier";
-                    } else if (partnerCompanyName.equals("Foodies")) {
+                    if (partnerCompanyName.equals("Foodies")) {
                         relation = "Catering";
+                    } else {
+                        relation = "Supplier";
                     }
-                    person = new Partner();
-                    isExit = true;
-                    break;
-
-                case "Client":
-                    boolean isOurClient = true;
-                    person = new Client(
-                            'F',
-                            pg.personFirstNameFemaleGenerate(),
+                    person = new Partner(
+                            sexCh,
+                            firstName,
                             pg.personLastNameGenerate(),
                             pg.personPassportIDGenerate(),
                             pg.personAgeGenerate(),
-                            isOurClient
+                            partnerCompanyName,
+                            relation
                     );
                     isExit = true;
                     break;
@@ -139,6 +207,6 @@ public class PersonGeneration {
                     break;
             }
         }
-        return person;
+        return new PersonWrap(person, token);
     }
 }

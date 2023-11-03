@@ -1,5 +1,10 @@
 package main.java.persons;
 
+import main.java.items.Item;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Master extends Employee {
 
     private int qualification;

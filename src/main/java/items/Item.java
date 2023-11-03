@@ -1,5 +1,7 @@
 package main.java.items;
 
+import java.util.Objects;
+
 public abstract class Item {
 
     private String brandName;
@@ -50,22 +52,22 @@ public abstract class Item {
 
     @Override
     public String toString() {
-        return "brandName=" + brandName  + '\'' +
+        return "brandName='" + brandName  + '\'' +
                 ",modelName='" + modelName + '\'' +
                 ", colour='" + colour + '\'' +
-                ", manufactureDate='" + manufactureDate + " ";
+                ", manufactureDate='" + manufactureDate + "' ";
     }
 
     @Override
     public boolean equals(Object o) {
-
-        return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(brandName, item.brandName) && Objects.equals(modelName, item.modelName) && Objects.equals(colour, item.colour) && Objects.equals(manufactureDate, item.manufactureDate);
     }
 
     @Override
     public int hashCode() {
-        int result = 0;
-        return result;
+        return Objects.hash(brandName, modelName, colour, manufactureDate);
     }
-
 }

@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class ItemGeneration {
 
-    private String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
-    private String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
-    private String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
+    private final String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
+    private final String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
+    private final String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
 
     public String itemBrandNameGenerate () {
         Random random = new Random();
@@ -26,6 +26,12 @@ public class ItemGeneration {
         return colour;
     }
 
+    public String itemManufacturerDateGenerate () {
+        Random random = new Random();
+        String manufacturerDate = String.valueOf((random.nextInt(20) + 2000));
+        return manufacturerDate;
+    }
+
     public Item itemGenerate () {
         ItemGeneration ig = new ItemGeneration();
         Item item = null;
@@ -33,7 +39,7 @@ public class ItemGeneration {
                 ig.itemBrandNameGenerate(),
                 ig.itemModelNameGenerate(),
                 ig.itemColourGenerate(),
-                "2020"
+                ig.itemManufacturerDateGenerate()
         );
         return item;
     }

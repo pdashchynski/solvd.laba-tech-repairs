@@ -10,7 +10,6 @@ public class ItemGeneration {
     private final String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
     private final String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
     Random random = new Random();
-    ItemGeneration ig = new ItemGeneration();
 
     public String itemBrandNameGenerate () {
         return brandNameArray[random.nextInt(brandNameArray.length)];
@@ -34,27 +33,27 @@ public class ItemGeneration {
 
     public Computer computerGenerate () {
         return new Computer(
-                ig.itemBrandNameGenerate(),
-                ig.itemModelNameGenerate(),
-                ig.itemColourGenerate(),
-                ig.itemManufacturerDateGenerate()
+                itemBrandNameGenerate(),
+                itemModelNameGenerate(),
+                itemColourGenerate(),
+                itemManufacturerDateGenerate()
         );
     }
 
     public SparePart sparePartGenerate () {
         return new SparePart(
-                ig.itemBrandNameGenerate(),
-                ig.itemModelNameGenerate(),
-                ig.itemColourGenerate(),
-                ig.itemManufacturerDateGenerate(),
-                ig.sparePartIsAvailableGenerate()
+                itemBrandNameGenerate(),
+                itemModelNameGenerate(),
+                itemColourGenerate(),
+                itemManufacturerDateGenerate(),
+                sparePartIsAvailableGenerate()
         );
     }
 
     public void clientAddItems (Client client) {
-        int amount = random.nextInt(3);
+        int amount = random.nextInt(3) + 1;
         for (int i = 0; i < amount; i++) {
-            client.addComputer(ig.computerGenerate());
+            client.addComputer(computerGenerate());
         }
     }
 }

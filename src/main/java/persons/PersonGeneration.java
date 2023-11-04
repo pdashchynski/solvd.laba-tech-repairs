@@ -12,7 +12,6 @@ public class PersonGeneration {
     private final String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
     private final String[] sexArray = new String[] {"M", "F"};
     Random random = new Random();
-    PersonGeneration pg = new PersonGeneration();
 
     public String personFirstNameGenerate (String sex) {
         String firstName = "";
@@ -43,10 +42,10 @@ public class PersonGeneration {
     public Client clientGenerate (String sex) {
         return new Client(
                 sex,
-                pg.personFirstNameGenerate(sex),
-                pg.personLastNameGenerate(),
-                pg.personPassportIDGenerate(),
-                pg.personAgeGenerate(),
+                personFirstNameGenerate(sex),
+                personLastNameGenerate(),
+                personPassportIDGenerate(),
+                personAgeGenerate(),
                 true
         );
     }
@@ -56,10 +55,10 @@ public class PersonGeneration {
         int salary = baseSalary * (random.nextInt(10));
         return new Employee(
                 sex,
-                pg.personFirstNameGenerate(sex),
-                pg.personLastNameGenerate(),
-                pg.personPassportIDGenerate(),
-                pg.personAgeGenerate(),
+                personFirstNameGenerate(sex),
+                personLastNameGenerate(),
+                personPassportIDGenerate(),
+                personAgeGenerate(),
                 occupation,
                 salary
         );
@@ -71,10 +70,10 @@ public class PersonGeneration {
         int salary = baseSalary * qualification;
         return new Master(
                 sex,
-                pg.personFirstNameGenerate(sex),
-                pg.personLastNameGenerate(),
-                pg.personPassportIDGenerate(),
-                pg.personAgeGenerate(),
+                personFirstNameGenerate(sex),
+                personLastNameGenerate(),
+                personPassportIDGenerate(),
+                personAgeGenerate(),
                 occupation,
                 salary,
                 qualification
@@ -93,10 +92,10 @@ public class PersonGeneration {
 
         return new Partner(
                 sex,
-                pg.personFirstNameGenerate(sex),
-                pg.personLastNameGenerate(),
-                pg.personPassportIDGenerate(),
-                pg.personAgeGenerate(),
+                personFirstNameGenerate(sex),
+                personLastNameGenerate(),
+                personPassportIDGenerate(),
+                personAgeGenerate(),
                 partnerCompanyName,
                 relation
         );
@@ -105,28 +104,25 @@ public class PersonGeneration {
     public Person personGenerate (String personType) {
         Scanner in = new Scanner(System.in);
         Person person = null;
+        int baseSalary = 1000;
 
         String sex = personSexGenerate();
 
             switch (personType) {
                 case "Client":
-                    person = pg.clientGenerate(sex);
+                    person = clientGenerate(sex);
                     break;
 
                 case "Employee":
-                    System.out.println("Is that Employee one of our masters? (Y/N)");
-                    String masterAnswer = in.next();
-                    int baseSalary = 1000;
+                    person = employeeGenerate(sex, baseSalary);
+                    break;
 
-                    if (masterAnswer.equals("Y")) {
-                        person = pg.masterGenerate(sex, baseSalary);
-                    } else if (masterAnswer.equals("N")) {
-                        person = pg.employeeGenerate(sex, baseSalary);
-                    }
+                case "Master":
+                    person = masterGenerate(sex, baseSalary);
                     break;
 
                 case "Partner":
-                    person = pg.partnerGenerate(sex);
+                    person = partnerGenerate(sex);
                     break;
 
                 default:

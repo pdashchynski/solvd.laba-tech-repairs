@@ -1,32 +1,24 @@
 package main.java.services;
 
+import main.java.items.Item;
+
 public class Repair extends Service{
 
-    private String component;
-    private String operation;
+    private Item item;
 
     public Repair() {}
 
-    public Repair(String name, int cost, String component, String operation) {
+    public Repair(String name, int cost, Item item) {
         super(name, cost);
-        this.component = component;
-        this.operation = operation;
+        this.item = item;
     }
 
-    public String getComponent() {
-        return component;
+    public Item getItem() {
+        return item;
     }
 
-    public void setComponent(String component) {
-        this.component = component;
-    }
-
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     @Override public void action() {

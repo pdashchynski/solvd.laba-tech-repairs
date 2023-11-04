@@ -27,10 +27,6 @@ public class ItemGeneration {
         return String.valueOf((random.nextInt(20) + 2000));
     }
 
-    public boolean sparePartIsAvailableGenerate () {
-        return random.nextBoolean();
-    }
-
     public Computer computerGenerate () {
         return new Computer(
                 itemBrandNameGenerate(),
@@ -46,14 +42,22 @@ public class ItemGeneration {
                 itemModelNameGenerate(),
                 itemColourGenerate(),
                 itemManufacturerDateGenerate(),
-                sparePartIsAvailableGenerate()
+                random.nextBoolean()
         );
     }
 
-    public void clientAddItems (Client client) {
+    public void clientAddComputersGenerate (Client client) {
         int amount = random.nextInt(3) + 1;
         for (int i = 0; i < amount; i++) {
-            client.addComputer(computerGenerate());
+            client.addComputerToComputerList(computerGenerate());
+        }
+    }
+
+    public void computerAddSparePartsGenerate (Computer computer) {
+        int amount = random.nextInt(3) + 1;
+        System.out.println(amount + " parts");
+        for (int i = 0; i < amount; i++) {
+            computer.addSparePartToSparePartList(sparePartGenerate());
         }
     }
 }

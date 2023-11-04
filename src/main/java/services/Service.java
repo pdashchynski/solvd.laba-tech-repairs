@@ -4,7 +4,6 @@ public abstract class Service {
 
     private String name;
     private int cost;
-    public static int baseTime = 24;
 
     public Service() {}
 

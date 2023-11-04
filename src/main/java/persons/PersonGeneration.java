@@ -52,7 +52,7 @@ public class PersonGeneration {
 
     public Employee employeeGenerate (String sex, int baseSalary) {
         String occupation = occupationArray[random.nextInt(occupationArray.length)];
-        int salary = baseSalary * (random.nextInt(10));
+        int salary = baseSalary * (random.nextInt(10) + 1);
         return new Employee(
                 sex,
                 personFirstNameGenerate(sex),
@@ -66,7 +66,7 @@ public class PersonGeneration {
 
     public Master masterGenerate (String sex, int baseSalary) {
         String occupation = "Master";
-        int qualification = random.nextInt(10);
+        int qualification = random.nextInt(10) + 1;
         int salary = baseSalary * qualification;
         return new Master(
                 sex,
@@ -102,7 +102,6 @@ public class PersonGeneration {
     }
 
     public Person personGenerate (String personType) {
-        Scanner in = new Scanner(System.in);
         Person person = null;
         int baseSalary = 1000;
 
@@ -126,7 +125,6 @@ public class PersonGeneration {
                     break;
 
                 default:
-                    System.out.println("Please enter a correct response");
                     break;
             }
         return person;

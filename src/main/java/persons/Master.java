@@ -38,4 +38,10 @@ public class Master extends Employee {
     public void addComputer(Computer computer) {
         this.computersList.add(computer);
     }
+
+    @Override
+    public String toString () {
+        return super.toString() +
+                ", qualification=" + qualification;
+    }
 }

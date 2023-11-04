@@ -1,14 +1,13 @@
 package main.java.persons;
 
 import main.java.items.Computer;
-import main.java.items.Item;
 
 import java.util.ArrayList;
 
 public class Client extends Person {
 
     private boolean isOurClient;
-    private ArrayList<Computer> computersList = new ArrayList<Computer>();
+    private ArrayList<Computer> computerList = new ArrayList<Computer>();
 
     public Client() {}
 
@@ -25,16 +24,16 @@ public class Client extends Person {
         isOurClient = ourClient;
     }
 
-    public ArrayList<Computer> getComputersList() {
-        return computersList;
+    public ArrayList<Computer> getComputerList() {
+        return computerList;
     }
 
-    public void setComputersList(ArrayList<Computer> computersList) {
-        this.computersList = computersList;
+    public void setComputerList(ArrayList<Computer> computerList) {
+        this.computerList = computerList;
     }
 
-    public void addComputer(Computer computer) {
-        this.computersList.add(computer);
+    public void addComputerToComputerList(Computer computer) {
+        this.computerList.add(computer);
     }
 
     @Override

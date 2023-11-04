@@ -1,6 +1,10 @@
 package main.java.items;
 
+import java.util.ArrayList;
+
 public class Computer extends Item {
+
+    private ArrayList<SparePart> sparePartList = new ArrayList<SparePart>();
 
     public Computer() {}
 
@@ -23,5 +27,15 @@ public class Computer extends Item {
         return super.hashCode();
     }
 
+    public ArrayList<SparePart> getSparePartList() {
+        return sparePartList;
+    }
 
+    public void setSparePartList(ArrayList<SparePart> sparePartList) {
+        this.sparePartList = sparePartList;
+    }
+
+    public void addSparePartToSparePartList(SparePart sparePart) {
+        this.sparePartList.add(sparePart);
+    }
 }

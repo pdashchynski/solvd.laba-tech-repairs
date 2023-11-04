@@ -64,4 +64,8 @@ public class Order {
     public void setSparePartList(ArrayList<SparePart> sparePartList) {
         this.sparePartList = sparePartList;
     }
+
+    public void addSparePartToSparePartList(SparePart sparePart) {
+        this.sparePartList.add(sparePart);
+    }
 }

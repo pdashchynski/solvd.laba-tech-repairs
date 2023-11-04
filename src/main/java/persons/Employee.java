@@ -32,7 +32,7 @@ public class Employee extends Person{
     @Override
     public String toString() {
         return super.toString() +
-                "position='" + occupation + '\'' +
+                "occupation='" + occupation + '\'' +
                 ", salary=" + salary;
     }
 }

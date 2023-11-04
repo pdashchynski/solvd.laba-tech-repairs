@@ -1,5 +1,6 @@
 package main.java.persons;
 
+import main.java.items.Computer;
 import main.java.items.Item;
 
 import java.util.ArrayList;
@@ -7,11 +8,11 @@ import java.util.ArrayList;
 public class Client extends Person {
 
     private boolean isOurClient;
-    private ArrayList<Item> itemsList = new ArrayList<Item>();
+    private ArrayList<Computer> computersList = new ArrayList<Computer>();
 
     public Client() {}
 
-    public Client(char sex, String firstName, String lastName, String passportID, int age, boolean isOurClient) {
+    public Client(String sex, String firstName, String lastName, String passportID, int age, boolean isOurClient) {
         super(sex, firstName, lastName, passportID, age);
         this.isOurClient = isOurClient;
     }
@@ -24,16 +25,16 @@ public class Client extends Person {
         isOurClient = ourClient;
     }
 
-    public ArrayList<Item> getItemsList() {
-        return itemsList;
+    public ArrayList<Computer> getComputersList() {
+        return computersList;
     }
 
-    public void setItemsList(ArrayList<Item> itemsList) {
-        this.itemsList = itemsList;
+    public void setComputersList(ArrayList<Computer> computersList) {
+        this.computersList = computersList;
     }
 
-    public void addItem(Item item) {
-        this.itemsList.add(item);
+    public void addComputer(Computer computer) {
+        this.computersList.add(computer);
     }
 
     @Override

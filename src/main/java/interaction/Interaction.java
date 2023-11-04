@@ -9,20 +9,20 @@ import java.util.*;
 
 public class Interaction {
 
+    Scanner in = new Scanner(System.in);
+    Random random = new Random();
+    PersonGeneration pg = new PersonGeneration();
+    ItemGeneration ig = new ItemGeneration();
+
+    ArrayList<Client> clientList = new ArrayList<Client>();
+    ArrayList<Employee> employeeList = new ArrayList<Employee>();
+    ArrayList<Master> masterList = new ArrayList<Master>();
+    ArrayList<Partner> partnerList = new ArrayList<Partner>();
+    Map<Item, Master> orderMap = new HashMap<Item, Master>();
+
     public void menu() {
 
-        Scanner in = new Scanner(System.in);
-        Random random = new Random();
         boolean isExit = false;
-        PersonGeneration pg = new PersonGeneration();
-        ItemGeneration ig = new ItemGeneration();
-
-        ArrayList<Client> clientList = new ArrayList<Client>();
-        ArrayList<Employee> employeeList = new ArrayList<Employee>();
-        ArrayList<Master> masterList = new ArrayList<Master>();
-        ArrayList<Partner> partnerList = new ArrayList<Partner>();
-
-        Map<Item, Master> orderMap = new HashMap<Item, Master>();
 
         while (!isExit) {
             System.out.println("Do you wish to create a new person? (Y/N)");
@@ -62,18 +62,7 @@ public class Interaction {
         }
 
         for (Client client : clientList) {
-
-                System.out.println("How many items does client " + client.getFirstName() + " " + client.getLastName() + " have?");
-                int itemsAnswer = in.nextInt();
-
-                for (int i = 0; i < itemsAnswer; i++) {
-                    client.addItem(ig.itemGenerate());
-                }
-
-                for (Item item : client.getItemsList()) {
-                    int i = random.nextInt(masterList.size());
-                    orderMap.put(item, (masterList.get(i)));
-                }
+            ig.clientAddItems(client);
         }
 
         for (Map.Entry<Item, Master> entry: orderMap.entrySet()) {
@@ -87,7 +76,7 @@ public class Interaction {
 
         System.out.println(clientList.toString());
         for (Client client : clientList) {
-            System.out.println(client.getItemsList().toString());
+            System.out.println(client.getComputersList().toString());
         }
     }
 }

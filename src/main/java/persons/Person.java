@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Person {
 
-    private char sex;
+    private String sex;
     private String firstName;
     private String lastName;
     private String passportID;
@@ -12,7 +12,7 @@ public abstract class Person {
 
     public Person() {}
 
-    public Person(char sex, String firstName, String lastName, String passportID, int age) {
+    public Person(String sex, String firstName, String lastName, String passportID, int age) {
         this.sex = sex;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,11 +20,11 @@ public abstract class Person {
         this.age = age;
     }
 
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(char sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

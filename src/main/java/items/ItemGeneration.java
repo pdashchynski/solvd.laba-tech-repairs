@@ -1,5 +1,7 @@
 package main.java.items;
 
+import main.java.persons.Client;
+
 import java.util.Random;
 
 public class ItemGeneration {
@@ -7,41 +9,52 @@ public class ItemGeneration {
     private final String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
     private final String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
     private final String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
+    Random random = new Random();
+    ItemGeneration ig = new ItemGeneration();
 
     public String itemBrandNameGenerate () {
-        Random random = new Random();
-        String brandName = brandNameArray[random.nextInt(brandNameArray.length)];
-        return brandName;
+        return brandNameArray[random.nextInt(brandNameArray.length)];
     }
 
     public String itemModelNameGenerate () {
-        Random random = new Random();
-        String modelName = modelNameArray[random.nextInt(modelNameArray.length)];
-        return modelName;
+        return modelNameArray[random.nextInt(modelNameArray.length)];
     }
 
     public String itemColourGenerate () {
-        Random random = new Random();
-        String colour = colourArray[random.nextInt(colourArray.length)];
-        return colour;
+        return colourArray[random.nextInt(colourArray.length)];
     }
 
     public String itemManufacturerDateGenerate () {
-        Random random = new Random();
-        String manufacturerDate = String.valueOf((random.nextInt(20) + 2000));
-        return manufacturerDate;
+        return String.valueOf((random.nextInt(20) + 2000));
     }
 
-    public Item itemGenerate () {
-        ItemGeneration ig = new ItemGeneration();
-        Item item = null;
-        item = new Computer(
+    public boolean sparePartIsAvailableGenerate () {
+        return random.nextBoolean();
+    }
+
+    public Computer computerGenerate () {
+        return new Computer(
                 ig.itemBrandNameGenerate(),
                 ig.itemModelNameGenerate(),
                 ig.itemColourGenerate(),
                 ig.itemManufacturerDateGenerate()
         );
-        return item;
     }
 
+    public SparePart sparePartGenerate () {
+        return new SparePart(
+                ig.itemBrandNameGenerate(),
+                ig.itemModelNameGenerate(),
+                ig.itemColourGenerate(),
+                ig.itemManufacturerDateGenerate(),
+                ig.sparePartIsAvailableGenerate()
+        );
+    }
+
+    public void clientAddItems (Client client) {
+        int amount = random.nextInt(3);
+        for (int i = 0; i < amount; i++) {
+            client.addComputer(ig.computerGenerate());
+        }
+    }
 }

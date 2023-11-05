@@ -42,6 +42,7 @@ public class Master extends Employee {
     @Override
     public String toString () {
         return super.toString() +
-                ", qualification=" + qualification;
+                ", qualification=" + qualification +
+                " who works for " + COMPANY_NAME;
     }
 }

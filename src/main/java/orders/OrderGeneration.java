@@ -12,9 +12,9 @@ import java.util.Random;
 
 public class OrderGeneration {
 
-    private ArrayList<Order> orderList = new ArrayList<Order>();
-    Random random = new Random();
-    ServiceGeneration sg = new ServiceGeneration();
+    private static ArrayList<Order> orderList = new ArrayList<Order>();
+    private final Random RANDOM = new Random();
+    private ServiceGeneration sg = new ServiceGeneration();
 
     public Order orderGenerate (Client client, Computer computer, Master master) {
         Service service = sg.serviceGenerate(computer);
@@ -41,11 +41,11 @@ public class OrderGeneration {
         if (order.getService().getName().equals("Repair")) {
             for (int i = 0; i < order.getComputer().getSparePartList().size(); i++) {
                 if (!order.getComputer().getSparePartList().get(i).isAvailable()) {
-                    delayTime += random.nextInt(7);
+                    delayTime += RANDOM.nextInt(7);
+                    System.out.println(delayTime + "delay");
                 }
             }
         }
-        System.out.println(delayTime + "delay");
         return delayTime;
     }
 
@@ -60,10 +60,10 @@ public class OrderGeneration {
     }
 
     public void setOrderList(ArrayList<Order> orderList) {
-        this.orderList = orderList;
+        OrderGeneration.orderList = orderList;
     }
 
     public void addOrderToOrderList (Order order) {
-        this.orderList.add(order);
+        orderList.add(order);
     }
 }

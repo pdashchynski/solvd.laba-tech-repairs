@@ -38,6 +38,7 @@ public class Client extends Person {
 
     @Override
     public String toString() {
-        return  super.toString();
+        return  super.toString() +
+                " who came to " + COMPANY_NAME;
     }
 }

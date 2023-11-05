@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public abstract class Person {
 
+    protected static final String COMPANY_NAME = "Solvd";
+
     private String sex;
     private String firstName;
     private String lastName;

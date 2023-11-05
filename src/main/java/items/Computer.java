@@ -1,6 +1,7 @@
 package main.java.items;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Computer extends Item {
 
@@ -10,21 +11,6 @@ public class Computer extends Item {
 
     public Computer(String brandName, String modelName, String colour, String manufactureDate) {
         super(brandName, modelName, colour, manufactureDate);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     public ArrayList<SparePart> getSparePartList() {
@@ -37,5 +23,24 @@ public class Computer extends Item {
 
     public void addSparePartToSparePartList(SparePart sparePart) {
         this.sparePartList.add(sparePart);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Computer computer = (Computer) o;
+        return Objects.equals(sparePartList, computer.sparePartList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), sparePartList);
     }
 }

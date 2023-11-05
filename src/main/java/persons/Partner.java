@@ -33,6 +33,7 @@ public class Partner extends Person {
     public String toString() {
         return super.toString() +
                 "companyName='" + companyName + '\'' +
-                ", relation='" + relation + '\'';
+                ", relation='" + relation + '\'' +
+                " who is related to " + COMPANY_NAME;
     }
 }

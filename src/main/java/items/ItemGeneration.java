@@ -6,25 +6,25 @@ import java.util.Random;
 
 public class ItemGeneration {
 
-    private final String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
-    private final String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
-    private final String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
-    Random random = new Random();
+    private String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
+    private String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
+    private String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
+    private final Random RANDOM = new Random();
 
     public String itemBrandNameGenerate () {
-        return brandNameArray[random.nextInt(brandNameArray.length)];
+        return brandNameArray[RANDOM.nextInt(brandNameArray.length)];
     }
 
     public String itemModelNameGenerate () {
-        return modelNameArray[random.nextInt(modelNameArray.length)];
+        return modelNameArray[RANDOM.nextInt(modelNameArray.length)];
     }
 
     public String itemColourGenerate () {
-        return colourArray[random.nextInt(colourArray.length)];
+        return colourArray[RANDOM.nextInt(colourArray.length)];
     }
 
     public String itemManufacturerDateGenerate () {
-        return String.valueOf((random.nextInt(20) + 2000));
+        return String.valueOf((RANDOM.nextInt(20) + 2000));
     }
 
     public Computer computerGenerate () {
@@ -42,22 +42,46 @@ public class ItemGeneration {
                 itemModelNameGenerate(),
                 itemColourGenerate(),
                 itemManufacturerDateGenerate(),
-                random.nextBoolean()
+                RANDOM.nextBoolean()
         );
     }
 
     public void clientAddComputersGenerate (Client client) {
-        int amount = random.nextInt(3) + 1;
+        int amount = RANDOM.nextInt(3) + 1;
         for (int i = 0; i < amount; i++) {
             client.addComputerToComputerList(computerGenerate());
         }
     }
 
     public void computerAddSparePartsGenerate (Computer computer) {
-        int amount = random.nextInt(3) + 1;
+        int amount = RANDOM.nextInt(3) + 1;
         System.out.println(amount + " parts");
         for (int i = 0; i < amount; i++) {
             computer.addSparePartToSparePartList(sparePartGenerate());
         }
+    }
+
+    public String[] getBrandNameArray() {
+        return brandNameArray;
+    }
+
+    public void setBrandNameArray(String[] brandNameArray) {
+        this.brandNameArray = brandNameArray;
+    }
+
+    public String[] getModelNameArray() {
+        return modelNameArray;
+    }
+
+    public void setModelNameArray(String[] modelNameArray) {
+        this.modelNameArray = modelNameArray;
+    }
+
+    public String[] getColourArray() {
+        return colourArray;
+    }
+
+    public void setColourArray(String[] colourArray) {
+        this.colourArray = colourArray;
     }
 }

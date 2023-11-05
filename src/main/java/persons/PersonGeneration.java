@@ -1,42 +1,48 @@
 package main.java.persons;
 
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class PersonGeneration {
 
-    private final String[] firstNameMaleArray = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
-    private final String[] firstNameFemaleArray = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
-    private final String[] lastNameArray = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
-    private final String[] occupationArray = new String[] {"Manager", "Administrator", "Cleaner"};
-    private final String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
-    private final String[] sexArray = new String[] {"M", "F"};
-    Random random = new Random();
+    private String[] firstNameMaleArray = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
+    private String[] firstNameFemaleArray = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
+    private String[] lastNameArray = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
+    private String[] occupationArray = new String[] {"Manager", "Administrator", "Cleaner"};
+    private String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
+    private String[] sexArray = new String[] {"M", "F"};
+    private int BASE_SALARY = 1000;
+    private final Random RANDOM = new Random();
+
+    private static ArrayList<Client> clientList = new ArrayList<Client>();
+    private static ArrayList<Employee> employeeList = new ArrayList<Employee>();
+    private static ArrayList<Master> masterList = new ArrayList<Master>();
+    private static ArrayList<Partner> partnerList = new ArrayList<Partner>();
 
     public String personFirstNameGenerate (String sex) {
         String firstName = "";
         if (sex.equals("M")) {
-            firstName = firstNameMaleArray[random.nextInt(firstNameMaleArray.length)];
+            firstName = firstNameMaleArray[RANDOM.nextInt(firstNameMaleArray.length)];
         } else if (sex.equals("F")) {
-            firstName = firstNameFemaleArray[random.nextInt(firstNameFemaleArray.length)];
+            firstName = firstNameFemaleArray[RANDOM.nextInt(firstNameFemaleArray.length)];
         }
         return firstName;
     }
 
     public String personLastNameGenerate () {
-        return lastNameArray[random.nextInt(lastNameArray.length)];
+        return lastNameArray[RANDOM.nextInt(lastNameArray.length)];
     }
 
     public String personPassportIDGenerate () {
-        return String.valueOf(random.nextInt(1000));
+        return String.valueOf(RANDOM.nextInt(1000));
     }
 
     public int personAgeGenerate () {
-        return random.nextInt(100) + 18;
+        return RANDOM.nextInt(100) + 18;
     }
 
     public String personSexGenerate () {
-        return sexArray[random.nextInt(sexArray.length)];
+        return sexArray[RANDOM.nextInt(sexArray.length)];
     }
 
     public Client clientGenerate (String sex) {
@@ -51,8 +57,8 @@ public class PersonGeneration {
     }
 
     public Employee employeeGenerate (String sex, int baseSalary) {
-        String occupation = occupationArray[random.nextInt(occupationArray.length)];
-        int salary = baseSalary * (random.nextInt(10) + 1);
+        String occupation = occupationArray[RANDOM.nextInt(occupationArray.length)];
+        int salary = baseSalary * (RANDOM.nextInt(10) + 1);
         return new Employee(
                 sex,
                 personFirstNameGenerate(sex),
@@ -66,7 +72,7 @@ public class PersonGeneration {
 
     public Master masterGenerate (String sex, int baseSalary) {
         String occupation = "Master";
-        int qualification = random.nextInt(10) + 1;
+        int qualification = RANDOM.nextInt(10) + 1;
         int salary = baseSalary * qualification;
         return new Master(
                 sex,
@@ -83,7 +89,7 @@ public class PersonGeneration {
     public Partner partnerGenerate (String sex) {
         String relation;
 
-        String partnerCompanyName = partnerCompanyNameArray[random.nextInt(partnerCompanyNameArray.length)];
+        String partnerCompanyName = partnerCompanyNameArray[RANDOM.nextInt(partnerCompanyNameArray.length)];
         if (partnerCompanyName.equals("Foodies")) {
             relation = "Catering";
         } else {
@@ -101,32 +107,101 @@ public class PersonGeneration {
         );
     }
 
-    public Person personGenerate (String personType) {
-        Person person = null;
-        int baseSalary = 1000;
+    public void personGenerate (String personType) {
 
         String sex = personSexGenerate();
 
             switch (personType) {
                 case "Client":
-                    person = clientGenerate(sex);
+                    clientList.add(clientGenerate(sex));
                     break;
 
                 case "Employee":
-                    person = employeeGenerate(sex, baseSalary);
+                    employeeList.add(employeeGenerate(sex, BASE_SALARY));
                     break;
 
                 case "Master":
-                    person = masterGenerate(sex, baseSalary);
+                    masterList.add(masterGenerate(sex, BASE_SALARY));
                     break;
 
                 case "Partner":
-                    person = partnerGenerate(sex);
+                    partnerList.add(partnerGenerate(sex));
                     break;
 
                 default:
                     break;
             }
-        return person;
+    }
+
+    public String[] getFirstNameMaleArray() {
+        return firstNameMaleArray;
+    }
+
+    public void setFirstNameMaleArray(String[] firstNameMaleArray) {
+        this.firstNameMaleArray = firstNameMaleArray;
+    }
+
+    public String[] getFirstNameFemaleArray() {
+        return firstNameFemaleArray;
+    }
+
+    public void setFirstNameFemaleArray(String[] firstNameFemaleArray) {
+        this.firstNameFemaleArray = firstNameFemaleArray;
+    }
+
+    public String[] getLastNameArray() {
+        return lastNameArray;
+    }
+
+    public void setLastNameArray(String[] lastNameArray) {
+        this.lastNameArray = lastNameArray;
+    }
+
+    public String[] getOccupationArray() {
+        return occupationArray;
+    }
+
+    public void setOccupationArray(String[] occupationArray) {
+        this.occupationArray = occupationArray;
+    }
+
+    public String[] getPartnerCompanyNameArray() {
+        return partnerCompanyNameArray;
+    }
+
+    public void setPartnerCompanyNameArray(String[] partnerCompanyNameArray) {
+        this.partnerCompanyNameArray = partnerCompanyNameArray;
+    }
+
+    public String[] getSexArray() {
+        return sexArray;
+    }
+
+    public void setSexArray(String[] sexArray) {
+        this.sexArray = sexArray;
+    }
+
+    public ArrayList<Client> getClientList() {
+        return clientList;
+    }
+
+    public ArrayList<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public ArrayList<Master> getMasterList() {
+        return masterList;
+    }
+
+    public ArrayList<Partner> getPartnerList() {
+        return partnerList;
+    }
+
+    public int getBASE_SALARY() {
+        return BASE_SALARY;
+    }
+
+    public void setBASE_SALARY(int BASE_SALARY) {
+        this.BASE_SALARY = BASE_SALARY;
     }
 }

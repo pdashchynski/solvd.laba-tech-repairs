@@ -33,6 +33,7 @@ public class Employee extends Person{
     public String toString() {
         return super.toString() +
                 "occupation='" + occupation + '\'' +
-                ", salary=" + salary;
+                ", salary=" + salary +
+                " who works for " + COMPANY_NAME;
     }
 }

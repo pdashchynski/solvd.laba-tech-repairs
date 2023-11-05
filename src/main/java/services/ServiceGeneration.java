@@ -7,21 +7,21 @@ import java.util.Random;
 
 public class ServiceGeneration {
 
-    private final String[] serviceTypeArray = new String[] {"Cleaning", "Diagnostics", "Repair"};
+    private String[] serviceTypeArray = new String[] {"Cleaning", "Diagnostics", "Repair"};
     private int baseTime = 24;
     private int baseCost = 100;
-    Random random = new Random();
-    ItemGeneration ig = new ItemGeneration();
+    private final Random RANDOM = new Random();
+    private ItemGeneration ig = new ItemGeneration();
 
     public String serviceTypeGenerate () {
-        return serviceTypeArray[random.nextInt(serviceTypeArray.length)];
+        return serviceTypeArray[RANDOM.nextInt(serviceTypeArray.length)];
     }
 
     public Cleaning cleaningGenerate (String serviceType) {
         return new Cleaning(
                 serviceType,
                 baseCost/2,
-                random.nextBoolean()
+                RANDOM.nextBoolean()
                 );
     }
 
@@ -29,7 +29,7 @@ public class ServiceGeneration {
         return new Diagnostics(
                 serviceType,
                 baseCost/3,
-                random.nextBoolean()
+                RANDOM.nextBoolean()
                 );
     }
 
@@ -82,4 +82,13 @@ public class ServiceGeneration {
     public void setBaseCost(int baseCost) {
         this.baseCost = baseCost;
     }
+
+    public String[] getServiceTypeArray() {
+        return serviceTypeArray;
+    }
+
+    public void setServiceTypeArray(String[] serviceTypeArray) {
+        this.serviceTypeArray = serviceTypeArray;
+    }
+
 }

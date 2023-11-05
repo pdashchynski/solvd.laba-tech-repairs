@@ -21,11 +21,6 @@ public class Interaction {
     OrderGeneration og = new OrderGeneration();
     ServiceGeneration sg = new ServiceGeneration();
 
-    ArrayList<Client> clientList = new ArrayList<Client>();
-    ArrayList<Employee> employeeList = new ArrayList<Employee>();
-    ArrayList<Master> masterList = new ArrayList<Master>();
-    ArrayList<Partner> partnerList = new ArrayList<Partner>();
-
     public void menu() {
 
         boolean isExit = false;
@@ -38,26 +33,7 @@ public class Interaction {
                 case "Y":
                     System.out.println("What type of a person do you wish to create? (Client/Employee/Master/Partner)");
                     String personType = in.next();
-                    Person person = pg.personGenerate(personType);
-                    System.out.println(person);
-
-                    switch (personType) {
-                        case "Client":
-                            clientList.add((Client) person);
-                            break;
-                        case "Employee":
-                            employeeList.add((Employee) person);
-                            break;
-                        case "Master":
-                            masterList.add((Master) person);
-                            break;
-                        case "Partner":
-                            partnerList.add((Partner) person);
-                            break;
-                        default:
-                            System.out.println("Please enter a correct response");
-                            break;
-                    }
+                    pg.personGenerate(personType);
                     break;
                 case "N":
                     isExit = true;
@@ -68,11 +44,11 @@ public class Interaction {
             }
         }
 
-        for (Client client : clientList) {
+        for (Client client : pg.getClientList()) {
             ig.clientAddComputersGenerate(client);
 
             for (Computer computer : client.getComputerList()) {
-                og.addOrderToOrderList(og.orderGenerate(client, computer, masterList.get(random.nextInt(masterList.size())) ));
+                og.addOrderToOrderList(og.orderGenerate(client, computer, pg.getMasterList().get(random.nextInt(pg.getMasterList().size())) ));
             }
         }
 

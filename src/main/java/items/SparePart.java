@@ -1,5 +1,7 @@
 package main.java.items;
 
+import java.util.Objects;
+
 public class SparePart extends Item {
 
     private boolean isAvailable;
@@ -26,11 +28,15 @@ public class SparePart extends Item {
 
     @Override
     public boolean equals(Object o) {
-        return super.equals(o);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        SparePart sparePart = (SparePart) o;
+        return isAvailable == sparePart.isAvailable;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(super.hashCode(), isAvailable);
     }
 }

@@ -63,7 +63,10 @@ public abstract class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return Objects.equals(brandName, item.brandName) && Objects.equals(modelName, item.modelName) && Objects.equals(colour, item.colour) && Objects.equals(manufactureDate, item.manufactureDate);
+        return Objects.equals(brandName, item.brandName) &&
+                Objects.equals(modelName, item.modelName) &&
+                Objects.equals(colour, item.colour) &&
+                Objects.equals(manufactureDate, item.manufactureDate);
     }
 
     @Override

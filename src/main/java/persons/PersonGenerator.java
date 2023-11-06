@@ -3,7 +3,9 @@ package main.java.persons;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PersonGeneration {
+import static main.java.Executor.RANDOM;
+
+public class PersonGenerator {
 
     private String[] firstNameMaleArray = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
     private String[] firstNameFemaleArray = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
@@ -12,7 +14,6 @@ public class PersonGeneration {
     private String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
     private String[] sexArray = new String[] {"M", "F"};
     private int BASE_SALARY = 1000;
-    private final Random RANDOM = new Random();
 
     private static ArrayList<Client> clientList = new ArrayList<Client>();
     private static ArrayList<Employee> employeeList = new ArrayList<Employee>();

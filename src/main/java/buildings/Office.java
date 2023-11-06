@@ -45,7 +45,7 @@ public class Office {
         this.employeesList.add(employee);
     };
 
-    public void printEmployeeList() {
+    public void printEmployeesList() {
         for (int i = 0; i < employeesList.size(); i++) {
             System.out.println((employeesList.get(i)).toString());
         }

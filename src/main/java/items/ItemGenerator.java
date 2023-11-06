@@ -4,12 +4,14 @@ import main.java.persons.Client;
 
 import java.util.Random;
 
-public class ItemGeneration {
+import static main.java.Executor.RANDOM;
+
+public class ItemGenerator {
 
     private String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
     private String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
     private String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
-    private final Random RANDOM = new Random();
+
 
     public String itemBrandNameGenerate () {
         return brandNameArray[RANDOM.nextInt(brandNameArray.length)];

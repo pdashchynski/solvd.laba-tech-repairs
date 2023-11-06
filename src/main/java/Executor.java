@@ -1,18 +1,24 @@
 package main.java;
 
-import main.java.buildings.Office;
 import main.java.interaction.Interaction;
-import main.java.persons.Client;
-import main.java.persons.Employee;
-import main.java.services.Cleaning;
-import main.java.services.Service;
+
+import java.util.Random;
+import java.util.Scanner;
 
 public class Executor {
+
+    public static final Random RANDOM = new Random();
+    public static final Scanner IN = new Scanner(System.in);
+
+    static {
+        System.out.println("Static block execution");
+    }
 
     public static void main(String[] args) {
 
         Interaction interaction = new Interaction();
 
-        interaction.menu();
+        interaction.menuInput();
+        interaction.menuOutput();
     }
 }

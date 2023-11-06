@@ -1,17 +1,18 @@
 package main.java.services;
 
 import main.java.items.Computer;
-import main.java.items.ItemGeneration;
+import main.java.items.ItemGenerator;
 
 import java.util.Random;
 
-public class ServiceGeneration {
+import static main.java.Executor.RANDOM;
+
+public class ServiceGenerator {
 
     private String[] serviceTypeArray = new String[] {"Cleaning", "Diagnostics", "Repair"};
     private int baseTime = 24;
     private int baseCost = 100;
-    private final Random RANDOM = new Random();
-    private ItemGeneration ig = new ItemGeneration();
+    private ItemGenerator ig = new ItemGenerator();
 
     public String serviceTypeGenerate () {
         return serviceTypeArray[RANDOM.nextInt(serviceTypeArray.length)];

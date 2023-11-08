@@ -1,13 +1,16 @@
 package main.java.persons;
 
+import main.java.interfaces.Payable;
+import main.java.interfaces.Taxable;
 import main.java.items.Computer;
 import main.java.items.Item;
+import main.java.orders.Order;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Master extends Employee {
+public class Master extends Employee implements Payable, Taxable {
 
     private int qualification;
     private ArrayList<Computer> computersList = new ArrayList<Computer>();
@@ -37,6 +40,17 @@ public class Master extends Employee {
 
     public void addComputer(Computer computer) {
         this.computersList.add(computer);
+    }
+
+    public void payExtra (Order order) {
+        System.out.println("Master " + getFirstName() + " " + getLastName() +
+                " got paid an additional " + order.getTotalCost()/4 + " moneys for order "
+                + order.getOrderID());
+    }
+
+    public void tax () {
+        System.out.println("Master " + getFirstName() + " " + getLastName() +
+                " should pay " + getSalary()/4 + " money as taxes this month");
     }
 
     @Override

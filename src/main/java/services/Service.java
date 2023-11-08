@@ -1,6 +1,8 @@
 package main.java.services;
 
-public abstract class Service {
+import main.java.interfaces.Performable;
+
+public abstract class Service implements Performable {
 
     private String name;
     private int cost;
@@ -28,5 +30,5 @@ public abstract class Service {
         this.cost = cost;
     }
 
-    public abstract void action();
+    public abstract void perform();
 }

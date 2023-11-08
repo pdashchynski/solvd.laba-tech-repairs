@@ -15,14 +15,19 @@ public class Order {
     private Master master;
     private Service service;
     private ArrayList<SparePart> sparePartList;
+    private int totalCost;
+    private int delayTime;
+    private int totalTime;
+    private int orderID;
 
     public Order () {}
 
-    public Order (Client client, Computer computer, Master master, Service service) {
+    public Order (Client client, Computer computer, Master master, Service service, int orderID) {
         this.client = client;
         this.computer = computer;
         this.master = master;
         this.service = service;
+        this.orderID = orderID;
     }
 
     public Client getClient() {
@@ -67,5 +72,37 @@ public class Order {
 
     public void addSparePartToSparePartList(SparePart sparePart) {
         this.sparePartList.add(sparePart);
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public int getDelayTime() {
+        return delayTime;
+    }
+
+    public void setDelayTime(int delayTime) {
+        this.delayTime = delayTime;
+    }
+
+    public int getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(int totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 }

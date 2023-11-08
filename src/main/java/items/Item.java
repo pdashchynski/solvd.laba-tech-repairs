@@ -1,5 +1,6 @@
 package main.java.items;
 
+import java.util.Date;
 import java.util.Objects;
 
 public abstract class Item {
@@ -8,6 +9,7 @@ public abstract class Item {
     private String modelName;
     private String colour;
     private String manufactureDate;
+    private Date serviceDate;
 
     public Item() {}
 
@@ -48,6 +50,14 @@ public abstract class Item {
 
     public void setManufactureDate(String manufactureDate) {
         this.manufactureDate = manufactureDate;
+    }
+
+    public Date getServiceDate() {
+        return serviceDate;
+    }
+
+    public void setServiceDate(Date serviceDate) {
+        this.serviceDate = serviceDate;
     }
 
     @Override

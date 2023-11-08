@@ -21,7 +21,7 @@ public class Repair extends Service{
         this.item = item;
     }
 
-    @Override public void action() {
+    @Override public void perform() {
         System.out.println("Repairs in progress");
     }
 }

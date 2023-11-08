@@ -11,6 +11,8 @@ import main.java.services.Service;
 import main.java.services.ServiceGenerator;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Objects;
 import java.util.Random;
 
 import static main.java.Executor.RANDOM;
@@ -29,7 +31,10 @@ public class OrderGenerator {
             for (Computer computer : client.getComputerList()) {
                 Master master = pg.getMasterList().get(RANDOM.nextInt(pg.getMasterList().size()));
                 Service service = sg.serviceGenerate(computer);
-                addOrderToOrderList(new Order(client, computer, master, service) );
+                int orderID = Objects.hash(client, computer, master, service);
+                Date serviceDate = new Date();
+                computer.setServiceDate(serviceDate);
+                orderList.add(new Order(client, computer, master, service, orderID) );
             }
         }
     }
@@ -53,9 +58,11 @@ public class OrderGenerator {
 
     public int calculateTotalCost (Order order) {
         int baseCost = order.getService().getCost();
-        return baseCost +
+        int totalCost = baseCost +
                 ( baseCost * order.getMaster().getQualification() / 10) +
                 ( baseCost * calculateItemCoefficient(order.getComputer()) / 10);
+        order.setTotalCost(totalCost);
+        return totalCost;
     }
 
     public int calculateDelayTime (Order order) {
@@ -68,13 +75,16 @@ public class OrderGenerator {
                 }
             }
         }
+        order.setDelayTime(delayTime);
         return delayTime;
     }
 
     public int calculateTotalTime (Order order) {
-        return sg.getBaseTime() +
+        int totalTime = sg.getBaseTime() +
                 ( sg.getBaseTime() / order.getMaster().getQualification() ) +
                 calculateDelayTime(order);
+        order.setTotalTime(totalTime);
+        return totalTime;
     }
 
     public ArrayList<Order> getOrderList() {

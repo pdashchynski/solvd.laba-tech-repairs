@@ -19,7 +19,7 @@ public class Cleaning extends Service{
         isThorough = thorough;
     }
 
-    @Override public void action() {
+    @Override public void perform() {
         System.out.println("*vacuum cleaner noises*");
     };
 }

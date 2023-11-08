@@ -1,6 +1,10 @@
 package main.java;
 
 import main.java.interaction.Interaction;
+import main.java.items.ItemGenerator;
+import main.java.orders.OrderGenerator;
+import main.java.persons.PersonGenerator;
+import main.java.services.ServiceGenerator;
 
 import java.util.Random;
 import java.util.Scanner;

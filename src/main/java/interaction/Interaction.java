@@ -54,18 +54,15 @@ public final class Interaction {
             Service service = order.getService();
             int totalTime = og.calculateTotalTime(order);
             int totalCost = og.calculateTotalCost(order);
-            String diagnosticsResult = "";
 
-            if (service instanceof Diagnostics diagnostics) {
-                if (diagnostics.isOK()) {
-                    diagnosticsResult = " Everything is OK ";
-                } else {
-                    diagnosticsResult = " Additional service is required ";
-                }
-            }
-            System.out.println(master.toString() + " " + service.getName() + diagnosticsResult + " "
+            System.out.println(master.toString() + " " + service.getName() + " "
                     + computer.toString() + " in " + totalTime + " hours");
-            System.out.println(client.toString() + " should now pay " + totalCost + " moneys");
+            if (service instanceof Diagnostics) {
+                computer.boot();
+            }
+            master.payExtra(order);
+            master.greet(client);
+            System.out.println("You should now pay " + totalCost + " moneys");
         }
     }
 }

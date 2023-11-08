@@ -1,11 +1,22 @@
 package main.java.items;
 
+import main.java.interfaces.Bootable;
+import main.java.orders.Order;
+import main.java.orders.OrderGenerator;
+import main.java.persons.PersonGenerator;
+import main.java.services.Diagnostics;
+import main.java.services.ServiceGenerator;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Computer extends Item {
+import static main.java.Executor.RANDOM;
+
+public class Computer extends Item implements Bootable {
 
     private ArrayList<SparePart> sparePartList = new ArrayList<SparePart>();
+    private PersonGenerator pg = new PersonGenerator();
+    private OrderGenerator og = new OrderGenerator();
 
     public Computer() {}
 
@@ -23,6 +34,18 @@ public class Computer extends Item {
 
     public void addSparePartToSparePartList(SparePart sparePart) {
         this.sparePartList.add(sparePart);
+    }
+
+    public void boot () {
+        for (Order order : og.getOrderList()) {
+            if(order.getComputer().equals(this)) {
+                if (order.getService() instanceof Diagnostics diagnostics) {
+                    if (diagnostics.isOK()) {
+                        System.out.println("Booting up");
+                    }
+                }
+            }
+        }
     }
 
     @Override

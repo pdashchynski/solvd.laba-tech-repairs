@@ -1,6 +1,11 @@
 package main.java.persons;
 
-public class Employee extends Person{
+import main.java.interfaces.Greetable;
+import main.java.interfaces.Payable;
+import main.java.interfaces.Taxable;
+import main.java.orders.Order;
+
+public class Employee extends Person implements Greetable, Taxable {
 
     private String occupation;
     private int salary;
@@ -27,6 +32,15 @@ public class Employee extends Person{
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public void greet (Person person) {
+        System.out.println("Hello, " + person.getFirstName());
+    };
+
+    public void tax () {
+        System.out.println(getOccupation() + " " + getFirstName() + " " + getLastName() +
+                " should pay " + getSalary()/4 + " money as taxes this month");
     }
 
     @Override

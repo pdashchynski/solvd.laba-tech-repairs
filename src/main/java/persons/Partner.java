@@ -1,6 +1,8 @@
 package main.java.persons;
 
-public class Partner extends Person {
+import main.java.interfaces.Greetable;
+
+public class Partner extends Person implements Greetable {
 
     private String companyName;
     private String relation;
@@ -28,6 +30,10 @@ public class Partner extends Person {
     public void setRelation(String relation) {
         this.relation = relation;
     }
+
+    public void greet (Person person) {
+        System.out.println("Hello, " + person.getFirstName());
+    };
 
     @Override
     public String toString() {

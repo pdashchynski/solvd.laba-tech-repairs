@@ -57,9 +57,7 @@ public final class Interaction {
 
             System.out.println(master.toString() + " " + service.getName() + " "
                     + computer.toString() + " in " + totalTime + " hours");
-            if (service instanceof Diagnostics) {
-                computer.boot();
-            }
+            computer.boot();
             master.payExtra(order);
             master.greet(client);
             System.out.println("You should now pay " + totalCost + " moneys");

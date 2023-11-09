@@ -1,5 +1,6 @@
 package main.java.interaction;
 
+import main.java.Executor;
 import main.java.items.Computer;
 import main.java.items.ItemGenerator;
 import main.java.orders.Order;
@@ -8,6 +9,8 @@ import main.java.persons.*;
 import main.java.services.Diagnostics;
 import main.java.services.Service;
 import main.java.services.ServiceGenerator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
@@ -15,6 +18,7 @@ import static main.java.Executor.IN;
 
 public final class Interaction {
 
+    private static final Logger LOGGER = LogManager.getLogger(Executor.class);
     private PersonGenerator pg = new PersonGenerator();
     private ItemGenerator ig = new ItemGenerator();
     private OrderGenerator og = new OrderGenerator();

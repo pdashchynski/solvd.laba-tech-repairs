@@ -1,10 +1,8 @@
 package main.java;
 
 import main.java.interaction.Interaction;
-import main.java.items.ItemGenerator;
-import main.java.orders.OrderGenerator;
-import main.java.persons.PersonGenerator;
-import main.java.services.ServiceGenerator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -15,8 +13,10 @@ public class Executor {
     public static final Scanner IN = new Scanner(System.in);
 
     static {
-        System.out.println("Static block execution");
+        System.setProperty("log4j.configurationFile", "log4j2.xml");
     }
+
+    private static final Logger LOGGER = LogManager.getLogger(Executor.class);
 
     public static void main(String[] args) {
 

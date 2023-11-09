@@ -1,9 +1,13 @@
 package main.java.services;
 
+import main.java.interaction.Interaction;
 import main.java.items.Item;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Repair extends Service{
 
+    private static final Logger LOGGER = LogManager.getLogger(Repair.class);
     private Item item;
 
     public Repair() {}
@@ -22,6 +26,6 @@ public class Repair extends Service{
     }
 
     @Override public void perform() {
-        System.out.println("Repairs in progress");
+        LOGGER.info("Repairs in progress");
     }
 }

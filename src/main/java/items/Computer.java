@@ -1,19 +1,21 @@
 package main.java.items;
 
+import main.java.interaction.Interaction;
 import main.java.interfaces.Bootable;
 import main.java.orders.Order;
 import main.java.orders.OrderGenerator;
 import main.java.persons.PersonGenerator;
 import main.java.services.Diagnostics;
 import main.java.services.ServiceGenerator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static main.java.Executor.RANDOM;
-
 public class Computer extends Item implements Bootable {
 
+    private static final Logger LOGGER = LogManager.getLogger(Computer.class);
     private ArrayList<SparePart> sparePartList = new ArrayList<SparePart>();
     private OrderGenerator og = new OrderGenerator();
 
@@ -40,7 +42,7 @@ public class Computer extends Item implements Bootable {
             if(order.getComputer().equals(this)) {
                 if (order.getService() instanceof Diagnostics diagnostics) {
                     if (diagnostics.isOK()) {
-                        System.out.println("Booting up");
+                        LOGGER.info("Booting up");
                     }
                 }
             }

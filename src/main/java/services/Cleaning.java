@@ -1,7 +1,12 @@
 package main.java.services;
 
+import main.java.interaction.Interaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Cleaning extends Service{
 
+    private static final Logger LOGGER = LogManager.getLogger(Cleaning.class);
     private boolean isThorough;
 
     public Cleaning() {}
@@ -20,6 +25,6 @@ public class Cleaning extends Service{
     }
 
     @Override public void perform() {
-        System.out.println("*vacuum cleaner noises*");
+        LOGGER.info("*vacuum cleaner noises*");
     };
 }

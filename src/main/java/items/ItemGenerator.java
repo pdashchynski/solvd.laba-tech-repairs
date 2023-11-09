@@ -1,6 +1,9 @@
 package main.java.items;
 
+import main.java.interaction.Interaction;
 import main.java.persons.Client;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
@@ -8,6 +11,7 @@ import static main.java.Executor.RANDOM;
 
 public final class ItemGenerator {
 
+    private static final Logger LOGGER = LogManager.getLogger(ItemGenerator.class);
     private static String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
     private static String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
     private static String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
@@ -57,7 +61,7 @@ public final class ItemGenerator {
 
     public void computerAddSparePartsGenerate (Computer computer) {
         int amount = RANDOM.nextInt(3) + 1;
-        System.out.println(amount + " parts");
+        LOGGER.debug(amount + " parts");
         for (int i = 0; i < amount; i++) {
             computer.addSparePartToSparePartList(sparePartGenerate());
         }

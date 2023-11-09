@@ -1,9 +1,13 @@
 package main.java.persons;
 
+import main.java.interaction.Interaction;
 import main.java.interfaces.Greetable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Partner extends Person implements Greetable {
 
+    private static final Logger LOGGER = LogManager.getLogger(Partner.class);
     private String companyName;
     private String relation;
 
@@ -32,7 +36,7 @@ public class Partner extends Person implements Greetable {
     }
 
     public void greet (Person person) {
-        System.out.println("Hello, " + person.getFirstName());
+        LOGGER.info("Hello, " + person.getFirstName());
     };
 
     @Override

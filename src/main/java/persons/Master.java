@@ -1,10 +1,13 @@
 package main.java.persons;
 
+import main.java.interaction.Interaction;
 import main.java.interfaces.Payable;
 import main.java.interfaces.Taxable;
 import main.java.items.Computer;
 import main.java.items.Item;
 import main.java.orders.Order;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +15,7 @@ import java.util.Map;
 
 public class Master extends Employee implements Payable, Taxable {
 
+    private static final Logger LOGGER = LogManager.getLogger(Master.class);
     private int qualification;
     private ArrayList<Computer> computersList = new ArrayList<Computer>();
 
@@ -43,13 +47,13 @@ public class Master extends Employee implements Payable, Taxable {
     }
 
     public void payExtra (Order order) {
-        System.out.println("Master " + getFirstName() + " " + getLastName() +
+        LOGGER.info("Master " + getFirstName() + " " + getLastName() +
                 " got paid an additional " + order.getTotalCost()/4 + " moneys for order "
                 + order.getOrderID());
     }
 
     public void tax () {
-        System.out.println("Master " + getFirstName() + " " + getLastName() +
+        LOGGER.info("Master " + getFirstName() + " " + getLastName() +
                 " should pay " + getSalary()/4 + " money as taxes this month");
     }
 

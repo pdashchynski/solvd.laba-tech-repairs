@@ -1,5 +1,6 @@
 package main.java.orders;
 
+import main.java.interaction.Interaction;
 import main.java.items.Computer;
 import main.java.items.Item;
 import main.java.items.ItemGenerator;
@@ -9,6 +10,8 @@ import main.java.persons.Master;
 import main.java.persons.PersonGenerator;
 import main.java.services.Service;
 import main.java.services.ServiceGenerator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +22,7 @@ import static main.java.Executor.RANDOM;
 
 public final class OrderGenerator {
 
+    private static final Logger LOGGER = LogManager.getLogger(OrderGenerator.class);
     private static ArrayList<Order> orderList = new ArrayList<Order>();
     private PersonGenerator pg = new PersonGenerator();
     private ItemGenerator ig = new ItemGenerator();
@@ -71,7 +75,7 @@ public final class OrderGenerator {
             for (int i = 0; i < order.getComputer().getSparePartList().size(); i++) {
                 if (!order.getComputer().getSparePartList().get(i).isAvailable()) {
                     delayTime += RANDOM.nextInt(7);
-                    System.out.println(delayTime + "delay");
+                    LOGGER.debug(delayTime + "delay");
                 }
             }
         }

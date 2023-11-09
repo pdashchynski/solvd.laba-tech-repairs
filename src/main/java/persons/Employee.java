@@ -1,12 +1,16 @@
 package main.java.persons;
 
+import main.java.interaction.Interaction;
 import main.java.interfaces.Greetable;
 import main.java.interfaces.Payable;
 import main.java.interfaces.Taxable;
 import main.java.orders.Order;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Employee extends Person implements Greetable, Taxable {
 
+    private static final Logger LOGGER = LogManager.getLogger(Employee.class);
     private String occupation;
     private int salary;
 
@@ -35,11 +39,11 @@ public class Employee extends Person implements Greetable, Taxable {
     }
 
     public void greet (Person person) {
-        System.out.println("Hello, " + person.getFirstName());
+        LOGGER.info("Hello, " + person.getFirstName());
     };
 
     public void tax () {
-        System.out.println(getOccupation() + " " + getFirstName() + " " + getLastName() +
+        LOGGER.info(getOccupation() + " " + getFirstName() + " " + getLastName() +
                 " should pay " + getSalary()/4 + " money as taxes this month");
     }
 

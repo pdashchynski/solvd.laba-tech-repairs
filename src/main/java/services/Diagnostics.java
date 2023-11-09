@@ -1,9 +1,14 @@
 package main.java.services;
 
+import main.java.interaction.Interaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import static main.java.Executor.RANDOM;
 
 public class Diagnostics extends Service {
 
+    private static final Logger LOGGER = LogManager.getLogger(Diagnostics.class);
     private boolean isOK;
 
     public Diagnostics () {}
@@ -30,9 +35,9 @@ public class Diagnostics extends Service {
         this.isOK = RANDOM.nextBoolean();
 
         if (this.isOK) {
-            System.out.println(" Everything is OK ");
+            LOGGER.info(" Everything is OK ");
         } else {
-            System.out.println(" Additional service is required ");
+            LOGGER.info(" Additional service is required ");
         }
     }
 }

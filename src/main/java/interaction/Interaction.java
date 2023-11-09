@@ -18,7 +18,7 @@ import static main.java.Executor.IN;
 
 public final class Interaction {
 
-    private static final Logger LOGGER = LogManager.getLogger(Executor.class);
+    private static final Logger LOGGER = LogManager.getLogger(Interaction.class);
     private PersonGenerator pg = new PersonGenerator();
     private ItemGenerator ig = new ItemGenerator();
     private OrderGenerator og = new OrderGenerator();
@@ -29,12 +29,12 @@ public final class Interaction {
         boolean isExit = false;
 
         while (!isExit) {
-            System.out.println("Do you wish to create a new person? (Y/N)");
+            LOGGER.info("Do you wish to create a new person? (Y/N)");
             String createAnswer = IN.next();
 
             switch (createAnswer) {
                 case "Y":
-                    System.out.println("What type of a person do you wish to create? (Client/Employee/Master/Partner)");
+                    LOGGER.info("What type of a person do you wish to create? (Client/Employee/Master/Partner)");
                     String personType = IN.next();
                     pg.personGenerate(personType);
                     break;
@@ -42,7 +42,7 @@ public final class Interaction {
                     isExit = true;
                     break;
                 default:
-                    System.out.println("Please enter a correct response");
+                    LOGGER.info("Please enter a correct response");
                     break;
             }
         }
@@ -59,12 +59,12 @@ public final class Interaction {
             int totalTime = og.calculateTotalTime(order);
             int totalCost = og.calculateTotalCost(order);
 
-            System.out.println(master.toString() + " " + service.getName() + " "
+            LOGGER.info(master.toString() + " " + service.getName() + " "
                     + computer.toString() + " in " + totalTime + " hours");
             computer.boot();
             master.payExtra(order);
             master.greet(client);
-            System.out.println("You should now pay " + totalCost + " moneys");
+            LOGGER.info("You should now pay " + totalCost + " moneys");
         }
     }
 }

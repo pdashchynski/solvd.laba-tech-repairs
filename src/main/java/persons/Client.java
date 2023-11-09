@@ -1,12 +1,16 @@
 package main.java.persons;
 
+import main.java.interaction.Interaction;
 import main.java.interfaces.Greetable;
 import main.java.items.Computer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class Client extends Person implements Greetable {
 
+    private static final Logger LOGGER = LogManager.getLogger(Client.class);
     private boolean isOurClient;
     private ArrayList<Computer> computerList = new ArrayList<Computer>();
 
@@ -38,7 +42,7 @@ public class Client extends Person implements Greetable {
     }
 
     public void greet (Person person) {
-        System.out.println("Hello, " + person.getFirstName());
+        LOGGER.info("Hello, " + person.getFirstName());
     };
 
     @Override

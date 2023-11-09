@@ -1,19 +1,18 @@
 package main.java.persons;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import static main.java.Executor.RANDOM;
 
-public class PersonGenerator {
+public final class PersonGenerator {
 
-    private String[] firstNameMaleArray = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
-    private String[] firstNameFemaleArray = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
-    private String[] lastNameArray = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
-    private String[] occupationArray = new String[] {"Manager", "Administrator", "Cleaner"};
-    private String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
-    private String[] sexArray = new String[] {"M", "F"};
-    private int BASE_SALARY = 1000;
+    private static String[] firstNameMaleArray = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
+    private static String[] firstNameFemaleArray = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
+    private static String[] lastNameArray = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
+    private static String[] occupationArray = new String[] {"Manager", "Administrator", "Cleaner"};
+    private static String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
+    private static String[] sexArray = new String[] {"M", "F"};
+    private static int baseSalary = 1000;
 
     private static ArrayList<Client> clientList = new ArrayList<Client>();
     private static ArrayList<Employee> employeeList = new ArrayList<Employee>();
@@ -118,11 +117,11 @@ public class PersonGenerator {
                     break;
 
                 case "Employee":
-                    employeeList.add(employeeGenerate(sex, BASE_SALARY));
+                    employeeList.add(employeeGenerate(sex, baseSalary));
                     break;
 
                 case "Master":
-                    masterList.add(masterGenerate(sex, BASE_SALARY));
+                    masterList.add(masterGenerate(sex, baseSalary));
                     break;
 
                 case "Partner":
@@ -199,10 +198,10 @@ public class PersonGenerator {
     }
 
     public int getBASE_SALARY() {
-        return BASE_SALARY;
+        return baseSalary;
     }
 
     public void setBASE_SALARY(int BASE_SALARY) {
-        this.BASE_SALARY = BASE_SALARY;
+        this.baseSalary = BASE_SALARY;
     }
 }

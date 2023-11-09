@@ -6,11 +6,11 @@ import java.util.Random;
 
 import static main.java.Executor.RANDOM;
 
-public class ItemGenerator {
+public final class ItemGenerator {
 
     private static String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
-    private String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
-    private String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
+    private static String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
+    private static String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
 
 
     public String itemBrandNameGenerate () {

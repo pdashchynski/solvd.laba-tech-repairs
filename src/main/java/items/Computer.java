@@ -15,7 +15,6 @@ import static main.java.Executor.RANDOM;
 public class Computer extends Item implements Bootable {
 
     private ArrayList<SparePart> sparePartList = new ArrayList<SparePart>();
-    private PersonGenerator pg = new PersonGenerator();
     private OrderGenerator og = new OrderGenerator();
 
     public Computer() {}

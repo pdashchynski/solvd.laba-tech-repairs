@@ -7,11 +7,11 @@ import java.util.Random;
 
 import static main.java.Executor.RANDOM;
 
-public class ServiceGenerator {
+public final class ServiceGenerator {
 
-    private String[] serviceTypeArray = new String[] {"Cleaning", "Diagnostics", "Repair"};
-    private int baseTime = 24;
-    private int baseCost = 100;
+    private static String[] serviceTypeArray = new String[] {"Cleaning", "Diagnostics", "Repair"};
+    private static int baseTime = 24;
+    private static int baseCost = 100;
     private ItemGenerator ig = new ItemGenerator();
 
     public String serviceTypeGenerate () {

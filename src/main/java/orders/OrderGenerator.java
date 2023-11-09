@@ -17,7 +17,7 @@ import java.util.Random;
 
 import static main.java.Executor.RANDOM;
 
-public class OrderGenerator {
+public final class OrderGenerator {
 
     private static ArrayList<Order> orderList = new ArrayList<Order>();
     private PersonGenerator pg = new PersonGenerator();

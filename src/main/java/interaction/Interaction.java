@@ -1,6 +1,7 @@
 package main.java.interaction;
 
 import main.java.Executor;
+import main.java.exceptions.InvalidStringInputException;
 import main.java.items.Computer;
 import main.java.items.ItemGenerator;
 import main.java.orders.Order;
@@ -27,10 +28,15 @@ public final class Interaction {
     public final void menuInput() {
 
         boolean isExit = false;
+        String createAnswer = "";
 
         while (!isExit) {
             LOGGER.info("Do you wish to create a new person? (Y/N)");
-            String createAnswer = IN.next();
+            try {
+                createAnswer = IN.next();
+            } catch (InvalidStringInputException e) {
+                LOGGER.debug(e.getMessage());
+            }
 
             switch (createAnswer) {
                 case "Y":

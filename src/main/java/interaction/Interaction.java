@@ -1,7 +1,6 @@
 package main.java.interaction;
 
 import main.java.Executor;
-import main.java.exceptions.InvalidStringInputException;
 import main.java.items.Computer;
 import main.java.items.ItemGenerator;
 import main.java.orders.Order;
@@ -16,6 +15,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 
 import static main.java.Executor.IN;
+import static main.java.orders.OrderCalculation.calculateTotalCost;
+import static main.java.orders.OrderCalculation.calculateTotalTime;
 
 public final class Interaction {
 
@@ -28,15 +29,11 @@ public final class Interaction {
     public final void menuInput() {
 
         boolean isExit = false;
-        String createAnswer = "";
 
         while (!isExit) {
+
             LOGGER.info("Do you wish to create a new person? (Y/N)");
-            try {
-                createAnswer = IN.next();
-            } catch (InvalidStringInputException e) {
-                LOGGER.debug(e.getMessage());
-            }
+            String createAnswer = IN.next();
 
             switch (createAnswer) {
                 case "Y":
@@ -62,8 +59,8 @@ public final class Interaction {
             Computer computer = order.getComputer();
             Master master = order.getMaster();
             Service service = order.getService();
-            int totalTime = og.calculateTotalTime(order);
-            int totalCost = og.calculateTotalCost(order);
+            int totalTime = calculateTotalTime(order);
+            int totalCost = calculateTotalCost(order);
 
             LOGGER.info(master.toString() + " " + service.getName() + " "
                     + computer.toString() + " in " + totalTime + " hours");

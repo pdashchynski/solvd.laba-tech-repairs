@@ -22,7 +22,11 @@ public class Executor {
 
         Interaction interaction = new Interaction();
 
-        interaction.menuInput();
-        interaction.menuOutput();
+        try (IN) {
+            interaction.menuInput();
+            interaction.menuOutput();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

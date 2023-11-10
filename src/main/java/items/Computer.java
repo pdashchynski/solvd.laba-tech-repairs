@@ -1,5 +1,6 @@
 package main.java.items;
 
+import main.java.exceptions.ComputerIsNotOKException;
 import main.java.interaction.Interaction;
 import main.java.interfaces.Bootable;
 import main.java.orders.Order;
@@ -39,11 +40,15 @@ public class Computer extends Item implements Bootable {
 
     public void boot () {
         for (Order order : og.getOrderList()) {
-            if(order.getComputer().equals(this)) {
-                if (order.getService() instanceof Diagnostics diagnostics) {
+            if(order.getComputer().equals(this) && (order.getService() instanceof Diagnostics diagnostics)) {
+                try {
                     if (diagnostics.isOK()) {
                         LOGGER.info("Booting up");
+                    } else {
+                        throw new ComputerIsNotOKException("Computer is not OK");
                     }
+                } catch (ComputerIsNotOKException e) {
+                    LOGGER.info(e.getMessage());
                 }
             }
         }

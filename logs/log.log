@@ -1,0 +1,51 @@
+10 Nov 2023 18:26:16.679 [main] INFO  interaction.Interaction:33  - Do you wish to create a new person? (Y/N)
+10 Nov 2023 18:26:19.679 [main] INFO  interaction.Interaction:38  - What type of a person do you wish to create? (Client/Employee/Master/Partner)
+10 Nov 2023 18:26:21.814 [main] INFO  interaction.Interaction:33  - Do you wish to create a new person? (Y/N)
+10 Nov 2023 18:26:22.649 [main] INFO  interaction.Interaction:38  - What type of a person do you wish to create? (Client/Employee/Master/Partner)
+10 Nov 2023 18:26:25.524 [main] INFO  interaction.Interaction:33  - Do you wish to create a new person? (Y/N)
+10 Nov 2023 18:26:26.405 [main] INFO  interaction.Interaction:38  - What type of a person do you wish to create? (Client/Employee/Master/Partner)
+10 Nov 2023 18:26:28.633 [main] INFO  interaction.Interaction:33  - Do you wish to create a new person? (Y/N)
+10 Nov 2023 18:26:29.585 [main] DEBUG items.ItemGenerator:64  - 2 parts
+10 Nov 2023 18:26:29.606 [main] INFO  interaction.Interaction:63  - sex=F,firstName='Agatha', lastName='Campbell', passportID='32', age=91 occupation='Master', salary=4000 who works for Solvd, qualification=4 Cleaning brandName='Nvidia',modelName='400', colour='Red', manufactureDate='2017'  in 30 hours
+10 Nov 2023 18:26:29.609 [main] INFO  persons.Master:50  - Master Agatha Campbell got paid an additional 21 moneys for order -1894455824
+10 Nov 2023 18:26:29.609 [main] INFO  persons.Employee:42  - Hello, Rich
+10 Nov 2023 18:26:29.610 [main] INFO  interaction.Interaction:68  - You should now pay 85 moneys
+10 Nov 2023 18:26:29.610 [main] INFO  interaction.Interaction:63  - sex=F,firstName='Agatha', lastName='Campbell', passportID='32', age=91 occupation='Master', salary=4000 who works for Solvd, qualification=4 Diagnostics brandName='Nvidia',modelName='300', colour='Purple', manufactureDate='2013'  in 30 hours
+10 Nov 2023 18:26:29.610 [main] DEBUG items.Computer:52  - Computer is not OK
+10 Nov 2023 18:26:29.611 [main] INFO  persons.Master:50  - Master Agatha Campbell got paid an additional 13 moneys for order -243124536
+10 Nov 2023 18:26:29.611 [main] INFO  persons.Employee:42  - Hello, Rich
+10 Nov 2023 18:26:29.611 [main] INFO  interaction.Interaction:68  - You should now pay 55 moneys
+10 Nov 2023 18:26:29.611 [main] INFO  interaction.Interaction:63  - sex=F,firstName='Agatha', lastName='Campbell', passportID='32', age=91 occupation='Master', salary=4000 who works for Solvd, qualification=4 Diagnostics brandName='AMD',modelName='100', colour='Red', manufactureDate='2011'  in 30 hours
+10 Nov 2023 18:26:29.612 [main] INFO  items.Computer:47  - Booting up
+10 Nov 2023 18:26:29.612 [main] INFO  persons.Master:50  - Master Agatha Campbell got paid an additional 13 moneys for order -97279578
+10 Nov 2023 18:26:29.612 [main] INFO  persons.Employee:42  - Hello, Rich
+10 Nov 2023 18:26:29.612 [main] INFO  interaction.Interaction:68  - You should now pay 55 moneys
+10 Nov 2023 18:26:29.613 [main] INFO  interaction.Interaction:63  - sex=F,firstName='Agatha', lastName='Campbell', passportID='32', age=91 occupation='Master', salary=4000 who works for Solvd, qualification=4 Cleaning brandName='Lxino',modelName='700', colour='White', manufactureDate='2001'  in 30 hours
+10 Nov 2023 18:26:29.613 [main] INFO  persons.Master:50  - Master Agatha Campbell got paid an additional 20 moneys for order 1196111462
+10 Nov 2023 18:26:29.613 [main] INFO  persons.Employee:42  - Hello, Sonya
+10 Nov 2023 18:26:29.613 [main] INFO  interaction.Interaction:68  - You should now pay 80 moneys
+10 Nov 2023 18:26:29.614 [main] DEBUG orders.OrderGenerator:78  - 6delay
+10 Nov 2023 18:26:29.614 [main] INFO  interaction.Interaction:63  - sex=F,firstName='Agatha', lastName='Campbell', passportID='32', age=91 occupation='Master', salary=4000 who works for Solvd, qualification=4 Repair brandName='Intel',modelName='700', colour='Green', manufactureDate='2019'  in 36 hours
+10 Nov 2023 18:26:29.614 [main] INFO  persons.Master:50  - Master Agatha Campbell got paid an additional 52 moneys for order 72656218
+10 Nov 2023 18:26:29.615 [main] INFO  persons.Employee:42  - Hello, Sonya
+10 Nov 2023 18:26:29.615 [main] INFO  interaction.Interaction:68  - You should now pay 210 moneys
+10 Nov 2023 18:41:57.354 [main] INFO  interaction.Interaction:33  - Do you wish to create a new person? (Y/N)
+10 Nov 2023 18:41:59.614 [main] INFO  interaction.Interaction:38  - What type of a person do you wish to create? (Client/Employee/Master/Partner)
+10 Nov 2023 18:42:01.618 [main] INFO  interaction.Interaction:33  - Do you wish to create a new person? (Y/N)
+10 Nov 2023 18:42:02.709 [main] INFO  interaction.Interaction:38  - What type of a person do you wish to create? (Client/Employee/Master/Partner)
+10 Nov 2023 18:42:04.717 [main] INFO  interaction.Interaction:33  - Do you wish to create a new person? (Y/N)
+10 Nov 2023 18:42:05.814 [main] INFO  interaction.Interaction:38  - What type of a person do you wish to create? (Client/Employee/Master/Partner)
+10 Nov 2023 18:42:08.608 [main] INFO  interaction.Interaction:33  - Do you wish to create a new person? (Y/N)
+10 Nov 2023 18:42:09.752 [main] INFO  interaction.Interaction:63  - sex=F,firstName='Gorlock', lastName='Yeltsin', passportID='217', age=66 occupation='Master', salary=9000 who works for Solvd, qualification=9 Cleaning brandName='Lxino',modelName='700', colour='White', manufactureDate='2004'  in 26 hours
+10 Nov 2023 18:42:09.755 [main] INFO  persons.Master:50  - Master Gorlock Yeltsin got paid an additional 26 moneys for order -1816773974
+10 Nov 2023 18:42:09.756 [main] INFO  persons.Employee:42  - Hello, Alex
+10 Nov 2023 18:42:09.756 [main] INFO  interaction.Interaction:68  - You should now pay 105 moneys
+10 Nov 2023 18:42:09.756 [main] INFO  interaction.Interaction:63  - sex=F,firstName='Gorlock', lastName='Yeltsin', passportID='217', age=66 occupation='Master', salary=9000 who works for Solvd, qualification=9 Cleaning brandName='AMD',modelName='600', colour='Red', manufactureDate='2017'  in 26 hours
+10 Nov 2023 18:42:09.757 [main] INFO  persons.Master:50  - Master Gorlock Yeltsin got paid an additional 27 moneys for order -1270924970
+10 Nov 2023 18:42:09.757 [main] INFO  persons.Employee:42  - Hello, Alex
+10 Nov 2023 18:42:09.757 [main] INFO  interaction.Interaction:68  - You should now pay 110 moneys
+10 Nov 2023 18:42:09.758 [main] INFO  interaction.Interaction:63  - sex=F,firstName='Gorlock', lastName='Yeltsin', passportID='217', age=66 occupation='Master', salary=9000 who works for Solvd, qualification=9 Diagnostics brandName='Intel',modelName='100', colour='Green', manufactureDate='2012'  in 26 hours
+10 Nov 2023 18:42:09.758 [main] DEBUG items.Computer:51  - Computer is not OK
+10 Nov 2023 18:42:09.758 [main] INFO  persons.Master:50  - Master Gorlock Yeltsin got paid an additional 17 moneys for order 1017517383
+10 Nov 2023 18:42:09.758 [main] INFO  persons.Employee:42  - Hello, Kate
+10 Nov 2023 18:42:09.759 [main] INFO  interaction.Interaction:68  - You should now pay 71 moneys

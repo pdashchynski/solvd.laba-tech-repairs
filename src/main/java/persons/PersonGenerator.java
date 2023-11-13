@@ -6,13 +6,13 @@ import static main.java.Executor.RANDOM;
 
 public final class PersonGenerator {
 
-    private static String[] firstNameMaleArray = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
-    private static String[] firstNameFemaleArray = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
-    private static String[] lastNameArray = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
-    private static String[] occupationArray = new String[] {"Manager", "Administrator", "Cleaner"};
-    private static String[] partnerCompanyNameArray = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
-    private static String[] sexArray = new String[] {"M", "F"};
-    private static int baseSalary = 1000;
+    private static final String[] FIRST_NAME_MALE_ARRAY = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
+    private static final String[] FIRST_NAME_FEMALE_ARRAY = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
+    private static final String[] LAST_NAME_ARRAY = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
+    private static final String[] OCCUPATION_ARRAY = new String[] {"Manager", "Administrator", "Cleaner"};
+    private static final String[] PARTNER_COMPANY_NAME_ARRAY = new String[] {"AMD", "Nvidia", "Intel", "Foodies"};
+    private static final String[] SEX_ARRAY = new String[] {"M", "F"};
+    private static final int BASE_SALARY = 1000;
 
     private static ArrayList<Client> clientList = new ArrayList<Client>();
     private static ArrayList<Employee> employeeList = new ArrayList<Employee>();
@@ -22,15 +22,15 @@ public final class PersonGenerator {
     public String personFirstNameGenerate (String sex) {
         String firstName = "";
         if (sex.equals("M")) {
-            firstName = firstNameMaleArray[RANDOM.nextInt(firstNameMaleArray.length)];
+            firstName = FIRST_NAME_MALE_ARRAY[RANDOM.nextInt(FIRST_NAME_MALE_ARRAY.length)];
         } else if (sex.equals("F")) {
-            firstName = firstNameFemaleArray[RANDOM.nextInt(firstNameFemaleArray.length)];
+            firstName = FIRST_NAME_FEMALE_ARRAY[RANDOM.nextInt(FIRST_NAME_FEMALE_ARRAY.length)];
         }
         return firstName;
     }
 
     public String personLastNameGenerate () {
-        return lastNameArray[RANDOM.nextInt(lastNameArray.length)];
+        return LAST_NAME_ARRAY[RANDOM.nextInt(LAST_NAME_ARRAY.length)];
     }
 
     public String personPassportIDGenerate () {
@@ -42,7 +42,7 @@ public final class PersonGenerator {
     }
 
     public String personSexGenerate () {
-        return sexArray[RANDOM.nextInt(sexArray.length)];
+        return SEX_ARRAY[RANDOM.nextInt(SEX_ARRAY.length)];
     }
 
     public Client clientGenerate (String sex) {
@@ -57,7 +57,7 @@ public final class PersonGenerator {
     }
 
     public Employee employeeGenerate (String sex, int baseSalary) {
-        String occupation = occupationArray[RANDOM.nextInt(occupationArray.length)];
+        String occupation = OCCUPATION_ARRAY[RANDOM.nextInt(OCCUPATION_ARRAY.length)];
         int salary = baseSalary * (RANDOM.nextInt(10) + 1);
         return new Employee(
                 sex,
@@ -89,7 +89,7 @@ public final class PersonGenerator {
     public Partner partnerGenerate (String sex) {
         String relation;
 
-        String partnerCompanyName = partnerCompanyNameArray[RANDOM.nextInt(partnerCompanyNameArray.length)];
+        String partnerCompanyName = PARTNER_COMPANY_NAME_ARRAY[RANDOM.nextInt(PARTNER_COMPANY_NAME_ARRAY.length)];
         if (partnerCompanyName.equals("Foodies")) {
             relation = "Catering";
         } else {
@@ -117,11 +117,11 @@ public final class PersonGenerator {
                     break;
 
                 case "Employee":
-                    employeeList.add(employeeGenerate(sex, baseSalary));
+                    employeeList.add(employeeGenerate(sex, BASE_SALARY));
                     break;
 
                 case "Master":
-                    masterList.add(masterGenerate(sex, baseSalary));
+                    masterList.add(masterGenerate(sex, BASE_SALARY));
                     break;
 
                 case "Partner":
@@ -134,51 +134,31 @@ public final class PersonGenerator {
     }
 
     public String[] getFirstNameMaleArray() {
-        return firstNameMaleArray;
-    }
-
-    public void setFirstNameMaleArray(String[] firstNameMaleArray) {
-        this.firstNameMaleArray = firstNameMaleArray;
+        return FIRST_NAME_MALE_ARRAY;
     }
 
     public String[] getFirstNameFemaleArray() {
-        return firstNameFemaleArray;
-    }
-
-    public void setFirstNameFemaleArray(String[] firstNameFemaleArray) {
-        this.firstNameFemaleArray = firstNameFemaleArray;
+        return FIRST_NAME_FEMALE_ARRAY;
     }
 
     public String[] getLastNameArray() {
-        return lastNameArray;
-    }
-
-    public void setLastNameArray(String[] lastNameArray) {
-        this.lastNameArray = lastNameArray;
+        return LAST_NAME_ARRAY;
     }
 
     public String[] getOccupationArray() {
-        return occupationArray;
-    }
-
-    public void setOccupationArray(String[] occupationArray) {
-        this.occupationArray = occupationArray;
+        return OCCUPATION_ARRAY;
     }
 
     public String[] getPartnerCompanyNameArray() {
-        return partnerCompanyNameArray;
-    }
-
-    public void setPartnerCompanyNameArray(String[] partnerCompanyNameArray) {
-        this.partnerCompanyNameArray = partnerCompanyNameArray;
+        return PARTNER_COMPANY_NAME_ARRAY;
     }
 
     public String[] getSexArray() {
-        return sexArray;
+        return SEX_ARRAY;
     }
 
-    public void setSexArray(String[] sexArray) {
-        this.sexArray = sexArray;
+    public int getBASE_SALARY() {
+        return BASE_SALARY;
     }
 
     public ArrayList<Client> getClientList() {
@@ -195,13 +175,5 @@ public final class PersonGenerator {
 
     public ArrayList<Partner> getPartnerList() {
         return partnerList;
-    }
-
-    public int getBASE_SALARY() {
-        return baseSalary;
-    }
-
-    public void setBASE_SALARY(int BASE_SALARY) {
-        this.baseSalary = BASE_SALARY;
     }
 }

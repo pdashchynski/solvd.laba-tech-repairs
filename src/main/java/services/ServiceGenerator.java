@@ -3,25 +3,23 @@ package main.java.services;
 import main.java.items.Computer;
 import main.java.items.ItemGenerator;
 
-import java.util.Random;
-
 import static main.java.Executor.RANDOM;
 
 public final class ServiceGenerator {
 
-    private static String[] serviceTypeArray = new String[] {"Cleaning", "Diagnostics", "Repair"};
-    private static int baseTime = 24;
-    private static int baseCost = 100;
+    private static final String[] SERVICE_TYPE_ARRAY = new String[] {"Cleaning", "Diagnostics", "Repair"};
+    private static final int BASE_TIME = 24;
+    private static final int BASE_COST = 100;
     private ItemGenerator ig = new ItemGenerator();
 
     public String serviceTypeGenerate () {
-        return serviceTypeArray[RANDOM.nextInt(serviceTypeArray.length)];
+        return SERVICE_TYPE_ARRAY[RANDOM.nextInt(SERVICE_TYPE_ARRAY.length)];
     }
 
     public Cleaning cleaningGenerate (String serviceType) {
         return new Cleaning(
                 serviceType,
-                baseCost/2,
+                BASE_COST /2,
                 RANDOM.nextBoolean()
                 );
     }
@@ -29,7 +27,7 @@ public final class ServiceGenerator {
     public Diagnostics diagnosticsGenerate (String serviceType) {
         return new Diagnostics(
                 serviceType,
-                baseCost/3,
+                BASE_COST /3,
                 RANDOM.nextBoolean()
                 );
     }
@@ -38,7 +36,7 @@ public final class ServiceGenerator {
         ig.computerAddSparePartsGenerate(computer);
         return new Repair(
                 serviceType,
-                baseCost,
+                BASE_COST,
                 computer
         );
     }
@@ -69,27 +67,14 @@ public final class ServiceGenerator {
     }
 
     public int getBaseTime() {
-        return baseTime;
-    }
-
-    public void setBaseTime(int baseTime) {
-        this.baseTime = baseTime;
+        return BASE_TIME;
     }
 
     public int getBaseCost() {
-        return baseCost;
-    }
-
-    public void setBaseCost(int baseCost) {
-        this.baseCost = baseCost;
+        return BASE_COST;
     }
 
     public String[] getServiceTypeArray() {
-        return serviceTypeArray;
+        return SERVICE_TYPE_ARRAY;
     }
-
-    public void setServiceTypeArray(String[] serviceTypeArray) {
-        this.serviceTypeArray = serviceTypeArray;
-    }
-
 }

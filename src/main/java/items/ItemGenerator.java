@@ -1,32 +1,33 @@
 package main.java.items;
 
-import main.java.interaction.Interaction;
 import main.java.persons.Client;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Random;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import static main.java.Executor.RANDOM;
 
 public final class ItemGenerator {
 
     private static final Logger LOGGER = LogManager.getLogger(ItemGenerator.class);
-    private static String[] brandNameArray = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
-    private static String[] modelNameArray = new String[] {"100", "300", "400", "600", "700", "900"};
-    private static String[] colourArray = new String[] {"White", "Red", "Black", "Green", "Purple"};
+    private static final String[] BRAND_NAME_ARRAY = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
+    private static final String[] MODEL_NAME_ARRAY = new String[] {"100", "300", "400", "600", "700", "900"};
+    private static final String[] COLOUR_ARRAY = new String[] {"White", "Red", "Black", "Green", "Purple"};
 
 
     public String itemBrandNameGenerate () {
-        return brandNameArray[RANDOM.nextInt(brandNameArray.length)];
+        return BRAND_NAME_ARRAY[RANDOM.nextInt(BRAND_NAME_ARRAY.length)];
     }
 
     public String itemModelNameGenerate () {
-        return modelNameArray[RANDOM.nextInt(modelNameArray.length)];
+        return MODEL_NAME_ARRAY[RANDOM.nextInt(MODEL_NAME_ARRAY.length)];
     }
 
     public String itemColourGenerate () {
-        return colourArray[RANDOM.nextInt(colourArray.length)];
+        return COLOUR_ARRAY[RANDOM.nextInt(COLOUR_ARRAY.length)];
     }
 
     public String itemManufacturerDateGenerate () {
@@ -68,26 +69,14 @@ public final class ItemGenerator {
     }
 
     public String[] getBrandNameArray() {
-        return brandNameArray;
-    }
-
-    public void setBrandNameArray(String[] brandNameArray) {
-        this.brandNameArray = brandNameArray;
+        return BRAND_NAME_ARRAY;
     }
 
     public String[] getModelNameArray() {
-        return modelNameArray;
-    }
-
-    public void setModelNameArray(String[] modelNameArray) {
-        this.modelNameArray = modelNameArray;
+        return MODEL_NAME_ARRAY;
     }
 
     public String[] getColourArray() {
-        return colourArray;
-    }
-
-    public void setColourArray(String[] colourArray) {
-        this.colourArray = colourArray;
+        return COLOUR_ARRAY;
     }
 }

@@ -13,17 +13,14 @@ import main.java.services.ServiceGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 import static main.java.Executor.RANDOM;
 
 public final class OrderGenerator {
 
     private static final Logger LOGGER = LogManager.getLogger(OrderGenerator.class);
-    private static ArrayList<Order> orderList = new ArrayList<Order>();
+    private static Queue<Order> orderList = new LinkedList<>();
     private PersonGenerator pg = new PersonGenerator();
     private ItemGenerator ig = new ItemGenerator();
     private ServiceGenerator sg = new ServiceGenerator();
@@ -43,11 +40,11 @@ public final class OrderGenerator {
         }
     }
 
-    public ArrayList<Order> getOrderList() {
+    public Queue<Order> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(ArrayList<Order> orderList) {
+    public void setOrderList(Queue<Order> orderList) {
         OrderGenerator.orderList = orderList;
     }
 

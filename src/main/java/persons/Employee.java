@@ -8,6 +8,8 @@ import main.java.orders.Order;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Objects;
+
 public class Employee extends Person implements Greetable, Taxable {
 
     private static final Logger LOGGER = LogManager.getLogger(Employee.class);
@@ -53,5 +55,19 @@ public class Employee extends Person implements Greetable, Taxable {
                 "occupation='" + occupation + '\'' +
                 ", salary=" + salary +
                 " who works for " + COMPANY_NAME;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Employee employee = (Employee) o;
+        return salary == employee.salary && Objects.equals(occupation, employee.occupation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), occupation, salary);
     }
 }

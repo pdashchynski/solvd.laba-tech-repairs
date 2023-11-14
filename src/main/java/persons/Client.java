@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Client extends Person implements Greetable {
 
@@ -49,5 +50,19 @@ public class Client extends Person implements Greetable {
     public String toString() {
         return  super.toString() +
                 " who came to " + COMPANY_NAME;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Client client = (Client) o;
+        return isOurClient == client.isOurClient && Objects.equals(computerList, client.computerList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), isOurClient, computerList);
     }
 }

@@ -1,6 +1,7 @@
 package main.java.persons;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class Person {
 
@@ -69,5 +70,18 @@ public abstract class Person {
                 ", lastName='" + lastName + '\'' +
                 ", passportID='" + passportID + '\'' +
                 ", age=" + age + " ";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age && Objects.equals(sex, person.sex) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(passportID, person.passportID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sex, firstName, lastName, passportID, age);
     }
 }

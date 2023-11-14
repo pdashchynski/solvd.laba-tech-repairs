@@ -1,5 +1,6 @@
 package main.java.orders;
 
+import main.java.exceptions.IllegalCoefficientException;
 import main.java.items.Computer;
 import main.java.items.Item;
 import main.java.items.SparePart;
@@ -13,7 +14,7 @@ public final class OrderCalculation {
 
     private static final Logger LOGGER = LogManager.getLogger(OrderCalculation.class);
 
-    public static int calculateItemCoefficient (Item item) {
+    public static int calculateItemCoefficient (Item item) throws IllegalCoefficientException {
         int brandCoefficient = 3;
         if (item.getBrandName().equals("Lxino")) {
             brandCoefficient = 2;
@@ -26,6 +27,9 @@ public final class OrderCalculation {
                     brandCoefficient += 2;
                 }
             }
+        }
+        if (brandCoefficient <= 0) {
+            throw new IllegalCoefficientException();
         }
         return brandCoefficient;
     }

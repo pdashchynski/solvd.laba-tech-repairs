@@ -1,12 +1,11 @@
 package main.java.items;
 
+import main.java.exceptions.IllegalBrandNameException;
 import main.java.persons.Client;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import static main.java.Executor.RANDOM;
 
@@ -18,8 +17,12 @@ public final class ItemGenerator {
     private static final String[] COLOUR_ARRAY = new String[] {"White", "Red", "Black", "Green", "Purple"};
 
 
-    public String itemBrandNameGenerate () {
-        return BRAND_NAME_ARRAY[RANDOM.nextInt(BRAND_NAME_ARRAY.length)];
+    public String itemBrandNameGenerate () throws IllegalBrandNameException {
+        String brandName = BRAND_NAME_ARRAY[RANDOM.nextInt(BRAND_NAME_ARRAY.length)];
+        if (!Arrays.asList(BRAND_NAME_ARRAY).contains(brandName)) {
+            throw new IllegalBrandNameException("A brand that does not exist!", brandName);
+        }
+        return brandName;
     }
 
     public String itemModelNameGenerate () {

@@ -1,14 +1,17 @@
 package main.java.buildings;
 
+import main.java.exceptions.InvalidAgeException;
 import main.java.persons.Employee;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Office {
 
     private String address;
     private String phoneNumber;
-    private ArrayList<Employee> employeesList = new ArrayList<Employee>();
+    private Set<Employee> employeeHashSet = new HashSet<>();
 
     public Office() {}
 
@@ -33,20 +36,20 @@ public class Office {
         this.phoneNumber = phoneNumber;
     }
 
-    public ArrayList<Employee> getEmployeesList() {
-        return employeesList;
+    public Set<Employee> getEmployeeHashSet() {
+        return employeeHashSet;
     }
 
-    public void setEmployeesList(ArrayList<Employee> employeesList) {
-        this.employeesList = employeesList;
+    public void setEmployeeHashSet(HashSet<Employee> employeeHashSet) {
+        this.employeeHashSet = employeeHashSet;
     }
 
     public void addEmployee(Employee employee) {
-        this.employeesList.add(employee);
+        this.employeeHashSet.add(employee);
     };
 
     public void printEmployeesList() {
-        for (Employee employee : employeesList) {
+        for (Employee employee : employeeHashSet) {
             System.out.println(employee.toString());
         }
     }

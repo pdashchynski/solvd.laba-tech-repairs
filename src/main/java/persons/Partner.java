@@ -5,6 +5,8 @@ import main.java.interfaces.Greetable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Objects;
+
 public class Partner extends Person implements Greetable {
 
     private static final Logger LOGGER = LogManager.getLogger(Partner.class);
@@ -45,5 +47,19 @@ public class Partner extends Person implements Greetable {
                 "companyName='" + companyName + '\'' +
                 ", relation='" + relation + '\'' +
                 " who is related to " + COMPANY_NAME;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Partner partner = (Partner) o;
+        return Objects.equals(companyName, partner.companyName) && Objects.equals(relation, partner.relation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), companyName, relation);
     }
 }

@@ -2,7 +2,7 @@ package main.java.exceptions;
 
 import java.util.logging.Logger;
 
-public class InvalidAgeException extends IllegalArgumentException{
+public class InvalidAgeException extends Exception{
 
     private int age;
 

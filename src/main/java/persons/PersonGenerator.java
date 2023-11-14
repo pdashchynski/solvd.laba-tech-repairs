@@ -1,11 +1,17 @@
 package main.java.persons;
 
+import main.java.exceptions.InvalidAgeException;
+import main.java.interaction.Interaction;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 
 import static main.java.Executor.RANDOM;
 
 public final class PersonGenerator {
 
+    private static final Logger LOGGER = LogManager.getLogger(PersonGenerator.class);
     private static final String[] FIRST_NAME_MALE_ARRAY = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
     private static final String[] FIRST_NAME_FEMALE_ARRAY = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};
     private static final String[] LAST_NAME_ARRAY = new String[] {"Roberts", "Yeltsin", "Ivanov", "Campbell", "The Destroyer"};
@@ -37,8 +43,12 @@ public final class PersonGenerator {
         return String.valueOf(RANDOM.nextInt(1000));
     }
 
-    public int personAgeGenerate () {
-        return RANDOM.nextInt(100) + 18;
+    public int personAgeGenerate () throws InvalidAgeException{
+        int age = RANDOM.nextInt(100) + 18;
+        if (age < 18) {
+            throw new InvalidAgeException("Underage person", age);
+        }
+        return age;
     }
 
     public String personSexGenerate () {
@@ -46,12 +56,18 @@ public final class PersonGenerator {
     }
 
     public Client clientGenerate (String sex) {
+        int age = 0;
+        try {
+            age = personAgeGenerate();
+        } catch (InvalidAgeException e) {
+            LOGGER.debug(e.getMessage());
+        }
         return new Client(
                 sex,
                 personFirstNameGenerate(sex),
                 personLastNameGenerate(),
                 personPassportIDGenerate(),
-                personAgeGenerate(),
+                age,
                 true
         );
     }
@@ -59,12 +75,18 @@ public final class PersonGenerator {
     public Employee employeeGenerate (String sex, int baseSalary) {
         String occupation = OCCUPATION_ARRAY[RANDOM.nextInt(OCCUPATION_ARRAY.length)];
         int salary = baseSalary * (RANDOM.nextInt(10) + 1);
+        int age = 0;
+        try {
+            age = personAgeGenerate();
+        } catch (InvalidAgeException e) {
+            LOGGER.debug(e.getMessage());
+        }
         return new Employee(
                 sex,
                 personFirstNameGenerate(sex),
                 personLastNameGenerate(),
                 personPassportIDGenerate(),
-                personAgeGenerate(),
+                age,
                 occupation,
                 salary
         );
@@ -74,12 +96,18 @@ public final class PersonGenerator {
         String occupation = "Master";
         int qualification = RANDOM.nextInt(10) + 1;
         int salary = baseSalary * qualification;
+        int age = 0;
+        try {
+            age = personAgeGenerate();
+        } catch (InvalidAgeException e) {
+            LOGGER.debug(e.getMessage());
+        }
         return new Master(
                 sex,
                 personFirstNameGenerate(sex),
                 personLastNameGenerate(),
                 personPassportIDGenerate(),
-                personAgeGenerate(),
+                age,
                 occupation,
                 salary,
                 qualification
@@ -96,12 +124,19 @@ public final class PersonGenerator {
             relation = "Supplier";
         }
 
+        int age = 0;
+        try {
+            age = personAgeGenerate();
+        } catch (InvalidAgeException e) {
+            LOGGER.debug(e.getMessage());
+        }
+
         return new Partner(
                 sex,
                 personFirstNameGenerate(sex),
                 personLastNameGenerate(),
                 personPassportIDGenerate(),
-                personAgeGenerate(),
+                age,
                 partnerCompanyName,
                 relation
         );

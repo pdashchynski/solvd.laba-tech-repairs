@@ -38,17 +38,13 @@ public class Computer extends Item implements Bootable {
         this.sparePartList.add(sparePart);
     }
 
-    public void boot () {
+    public void boot () throws ComputerIsNotOKException {
         for (Order order : og.getOrderList()) {
             if(order.getComputer().equals(this) && (order.getService() instanceof Diagnostics diagnostics)) {
-                try {
-                    if (diagnostics.isOK()) {
-                        LOGGER.info("Booting up");
-                    } else {
-                        throw new ComputerIsNotOKException("Computer is not OK");
-                    }
-                } catch (ComputerIsNotOKException e) {
-                    LOGGER.info(e.getMessage());
+                if (diagnostics.isOK()) {
+                    LOGGER.info("Booting up");
+                } else {
+                    throw new ComputerIsNotOKException("Computer is not OK");
                 }
             }
         }

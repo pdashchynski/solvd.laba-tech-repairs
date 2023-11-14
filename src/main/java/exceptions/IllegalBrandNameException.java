@@ -1,6 +1,6 @@
 package main.java.exceptions;
 
-public class InvalidBrandNameException extends IllegalArgumentException{
+public class IllegalBrandNameException extends IllegalArgumentException{
 
     private String brandName;
 
@@ -12,18 +12,18 @@ public class InvalidBrandNameException extends IllegalArgumentException{
         this.brandName = brandName;
     }
 
-    public InvalidBrandNameException () {}
+    public IllegalBrandNameException() {}
 
-    public InvalidBrandNameException (String message, String brandName) {
+    public IllegalBrandNameException(String message, String brandName) {
         super(message);
         this.brandName = brandName;
     }
 
-    public InvalidBrandNameException (Throwable cause) {
+    public IllegalBrandNameException(Throwable cause) {
         super(cause);
     }
 
-    public InvalidBrandNameException (String message, Throwable cause, String brandName) {
+    public IllegalBrandNameException(String message, Throwable cause, String brandName) {
         super(message, cause);
         this.brandName = brandName;
     }

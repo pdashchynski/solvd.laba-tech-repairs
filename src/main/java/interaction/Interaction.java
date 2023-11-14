@@ -1,6 +1,9 @@
 package main.java.interaction;
 
 import main.java.Executor;
+import main.java.exceptions.ComputerIsNotOKException;
+import main.java.exceptions.InvalidAgeException;
+import main.java.exceptions.InvalidStringInputException;
 import main.java.items.Computer;
 import main.java.items.ItemGenerator;
 import main.java.orders.Order;
@@ -12,6 +15,7 @@ import main.java.services.ServiceGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.util.*;
 
 import static main.java.Executor.IN;
@@ -33,18 +37,33 @@ public final class Interaction {
         while (!isExit) {
 
             LOGGER.info("Do you wish to create a new person? (Y/N)");
-            String createAnswer = IN.next();
+            String createAnswer = "";
+            try {
+                createAnswer = IN.next();
+            } catch (InputMismatchException e) {
+                e.printStackTrace();
+            }
 
             switch (createAnswer) {
                 case "Y":
                     LOGGER.info("What type of a person do you wish to create? (Client/Employee/Master/Partner)");
-                    String personType = IN.next();
+                    String personType = "";
+                    try {
+                        personType = IN.next();
+                    } catch (InputMismatchException e) {
+                        e.printStackTrace();
+                    }
                     pg.personGenerate(personType);
                     break;
                 case "N":
                     isExit = true;
                     break;
                 default:
+                    try {
+                        throw new InvalidStringInputException();
+                    } catch (InvalidStringInputException e) {
+                        e.printStackTrace();
+                    }
                     LOGGER.info("Please enter a correct response");
                     break;
             }
@@ -64,7 +83,11 @@ public final class Interaction {
 
             LOGGER.info(master.toString() + " " + service.getName() + " "
                     + computer.toString() + " in " + totalTime + " hours");
-            computer.boot();
+            try {
+                computer.boot();
+            } catch (ComputerIsNotOKException e) {
+                LOGGER.debug(e.getMessage());
+            }
             master.payExtra(order);
             master.greet(client);
             LOGGER.info("You should now pay " + totalCost + " moneys");

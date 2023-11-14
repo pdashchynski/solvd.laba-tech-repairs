@@ -1,6 +1,8 @@
 package main.java.exceptions;
 
-public class InvalidStringInputException extends IllegalArgumentException{
+import java.io.IOException;
+
+public class InvalidStringInputException extends Exception {
 
     public InvalidStringInputException() {}
 

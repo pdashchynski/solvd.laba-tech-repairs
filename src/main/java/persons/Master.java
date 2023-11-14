@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Master extends Employee implements Payable, Taxable {
 
@@ -61,5 +62,19 @@ public class Master extends Employee implements Payable, Taxable {
     public String toString () {
         return super.toString() +
                 ", qualification=" + qualification;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Master master = (Master) o;
+        return qualification == master.qualification && Objects.equals(computersList, master.computersList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), qualification, computersList);
     }
 }

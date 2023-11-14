@@ -1,5 +1,6 @@
 package main.java;
 
+import main.java.custom.CustomLinkedListUsage;
 import main.java.interaction.Interaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,5 +29,7 @@ public class Executor {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        CustomLinkedListUsage.use();
     }
 }

@@ -1,11 +1,8 @@
 package main.java.buildings;
 
-import main.java.exceptions.InvalidAgeException;
 import main.java.persons.Employee;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Office {
 
@@ -44,7 +41,7 @@ public class Office {
         this.employeeHashSet = employeeHashSet;
     }
 
-    public void addEmployee(Employee employee) {
+    public void addEmployeeToSet(Employee employee) {
         this.employeeHashSet.add(employee);
     };
 

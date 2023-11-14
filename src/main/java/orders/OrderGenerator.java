@@ -1,10 +1,7 @@
 package main.java.orders;
 
-import main.java.interaction.Interaction;
 import main.java.items.Computer;
-import main.java.items.Item;
 import main.java.items.ItemGenerator;
-import main.java.items.SparePart;
 import main.java.persons.Client;
 import main.java.persons.Master;
 import main.java.persons.PersonGenerator;
@@ -20,7 +17,8 @@ import static main.java.Executor.RANDOM;
 public final class OrderGenerator {
 
     private static final Logger LOGGER = LogManager.getLogger(OrderGenerator.class);
-    private static Queue<Order> orderList = new LinkedList<>();
+    private static LinkedList<Order> orderList = new LinkedList<>();
+    private static Map<Integer, Master> orderIDMasterHashMap = new HashMap<>();
     private PersonGenerator pg = new PersonGenerator();
     private ItemGenerator ig = new ItemGenerator();
     private ServiceGenerator sg = new ServiceGenerator();
@@ -35,16 +33,17 @@ public final class OrderGenerator {
                 int orderID = Objects.hash(client, computer, master, service);
                 Date serviceDate = new Date();
                 computer.setServiceDate(serviceDate);
-                orderList.add(new Order(client, computer, master, service, orderID) );
+                orderIDMasterHashMap.put(orderID, master);
+                orderList.addLast(new Order(client, computer, master, service, orderID) );
             }
         }
     }
 
-    public Queue<Order> getOrderList() {
+    public LinkedList<Order> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(Queue<Order> orderList) {
+    public void setOrderList(LinkedList<Order> orderList) {
         OrderGenerator.orderList = orderList;
     }
 

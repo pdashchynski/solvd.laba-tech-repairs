@@ -1,66 +1,91 @@
 package main.java.custom;
 
-public class CustomLinkedList {
-    class node<T> {
+public class CustomLinkedList<T> {
+    node<T> head;
+    node<T> tail;
+    private int size = 0;
+
+    private class node<T> {
         T data;
+        node<T> previous;
         node<T> next;
 
-        node(T data)
-        {
+        node(T data) {
             this.data = data;
+            this.previous = null;
             this.next = null;
         }
     }
 
-    class customLinkedList<T> {
-        node<T> head;
-        private int length = 0;
+    CustomLinkedList() {
+        this.head = null;
+        this.tail = null;
+    }
 
-        customLinkedList() {
-            this.head = null;
+    void add(T data) {
+        node<T> newNode = new node<>(data);
+
+        if (this.head == null) {
+            head = tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.previous = tail;
+            tail = newNode;
         }
+        size++;
+    }
 
-        void add(T data) {
-            node<T> temp = new node<>(data);
+    void addFirst(T data) {
+        node<T> newNode = new node<>(data);
 
-            if (this.head == null) {
-                head = temp;
-            } else {
-                node<T> X = head;
-                while (X.next != null) {
-                    X = X.next;
-                }
-                X.next = temp;
-            }
-            length++;
+        if (this.head == null) {
+            head = tail = newNode;
+        } else {
+            head.next = newNode;
+            newNode.previous = head;
+            tail = newNode;
         }
+        size++;
+    }
 
-        void add(int position, T data) {
-            if (position > length + 1) {
-                System.out.println(
-                        "Position Unavailable in LinkedList");
-                return;
-            }
-            if (position == 1) {
-                node<T> temp = head;
-                head = new node<T>(data);
-                head.next = temp;
-                return;
-            }
-
+    void add(int index, T data) {
+        if (index > size) {
+            System.out.println("Index Unavailable in LinkedList");
+            return;
+        }
+        if (index == 1) {
             node<T> temp = head;
-            node<T> prev = new node<T>(null);
-
-            while (position - 1 > 0) {
-                prev = temp;
-                temp = temp.next;
-                position--;
-            }
-            prev.next = new node<T>(data);
-            prev.next.next = temp;
+            head = new node<T>(data);
+            head.next = temp;
+            return;
         }
 
-        void remove(T key) {
+        node<T> temp = head;
+        node<T> prev = new node<T>(null);
+
+        while (index - 1 > 0) {
+            prev = temp;
+            temp = temp.next;
+            index--;
+        }
+        prev.next = new node<T>(data);
+        prev.next.next = temp;
+    }
+
+    void clear() {
+        head = null;
+        size = 0;
+    }
+
+    boolean empty() {
+        return head == null;
+    }
+
+        /*T get(int index) {
+            return T;
+        }
+
+        void remove(int index) {
             node<T> prev = new node<>(null);
             prev.next = head;
             node<T> next = head.next;
@@ -73,13 +98,11 @@ public class CustomLinkedList {
             }
 
             while (temp.next != null) {
-                if (String.valueOf(temp.data).equals(
-                        String.valueOf(key))) {
+                if (String.valueOf(temp.data).equals(String.valueOf(key))) {
                     prev.next = next;
                     exists = true;
                     break;
                 }
-
                 prev = temp;
                 temp = temp.next;
                 next = temp.next;
@@ -91,39 +114,67 @@ public class CustomLinkedList {
             }
 
             if (exists) {
-                length--;
+                size--;
             } else {
                 System.out.println("Given Value is not present in linked list");
             }
+        }*/
+
+    void remove(T key) {
+        node<T> prev = new node<>(null);
+        prev.next = head;
+        node<T> next = head.next;
+        node<T> temp = head;
+        boolean exists = false;
+
+        if (head.data == key) {
+            head = head.next;
+            exists = true;
         }
 
-        void clear() {
-            head = null;
-            length = 0;
-        }
-
-        boolean empty() {
-            return head == null;
-        }
-
-        int length() {
-            return this.length;
-        }
-
-        public String toString() {
-            String S = "{ ";
-            node<T> X = head;
-
-            if (X == null)
-                return S + " }";
-
-            while (X.next != null) {
-                S += String.valueOf(X.data) + " -> ";
-                X = X.next;
+        while (temp.next != null) {
+            if (String.valueOf(temp.data).equals(String.valueOf(key))) {
+                prev.next = next;
+                exists = true;
+                break;
             }
+            prev = temp;
+            temp = temp.next;
+            next = temp.next;
+        }
 
-            S += String.valueOf(X.data);
-            return S + " }";
+        if (!exists && String.valueOf(temp.data).equals(String.valueOf(key))) {
+            prev.next = null;
+            exists = true;
+        }
+
+        if (exists) {
+            size--;
+        } else {
+            System.out.println("Given Value is not present in linked list");
         }
     }
+
+    //E set(int index, E element) {}
+
+    int size() {
+        return this.size;
+    }
+
+    public String toString() {
+        String S = "{ ";
+        node<T> X = head;
+
+        if (X == null)
+            return S + " }";
+
+        while (X.next != null) {
+            S += String.valueOf(X.data) + " -> ";
+            X = X.next;
+        }
+
+        S += String.valueOf(X.data);
+        return S + " }";
+    }
 }
+

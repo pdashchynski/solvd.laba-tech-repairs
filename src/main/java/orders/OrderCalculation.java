@@ -1,17 +1,18 @@
-package main.java.orders;
+package orders;
 
-import main.java.exceptions.IllegalCoefficientException;
-import main.java.items.Computer;
-import main.java.items.Item;
-import main.java.items.SparePart;
-import main.java.services.ServiceGenerator;
+import exceptions.IllegalCoefficientException;
+import items.Computer;
+import items.Item;
+import items.SparePart;
+import services.ServiceGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static main.java.Executor.RANDOM;
+import java.util.Random;
 
 public final class OrderCalculation {
 
+    private static final Random RANDOM = new Random();
     private static final Logger LOGGER = LogManager.getLogger(OrderCalculation.class);
 
     public static int calculateItemCoefficient (Item item) throws IllegalCoefficientException {

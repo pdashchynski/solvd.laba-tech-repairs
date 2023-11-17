@@ -1,29 +1,28 @@
-package main.java.interaction;
+package interaction;
 
-import main.java.Executor;
-import main.java.exceptions.ComputerIsNotOKException;
-import main.java.exceptions.InvalidAgeException;
-import main.java.exceptions.InvalidStringInputException;
-import main.java.items.Computer;
-import main.java.items.ItemGenerator;
-import main.java.orders.Order;
-import main.java.orders.OrderGenerator;
-import main.java.persons.*;
-import main.java.services.Diagnostics;
-import main.java.services.Service;
-import main.java.services.ServiceGenerator;
+import exceptions.ComputerIsNotOKException;
+import exceptions.InvalidAgeException;
+import exceptions.InvalidStringInputException;
+import items.Computer;
+import items.ItemGenerator;
+import orders.Order;
+import orders.OrderGenerator;
+import persons.*;
+import services.Diagnostics;
+import services.Service;
+import services.ServiceGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.*;
 
-import static main.java.Executor.IN;
-import static main.java.orders.OrderCalculation.calculateTotalCost;
-import static main.java.orders.OrderCalculation.calculateTotalTime;
+import static orders.OrderCalculation.calculateTotalCost;
+import static orders.OrderCalculation.calculateTotalTime;
 
 public final class Interaction {
 
+    private static final Scanner IN = new Scanner(System.in);
     private static final Logger LOGGER = LogManager.getLogger(Interaction.class);
     private PersonGenerator pg = new PersonGenerator();
     private ItemGenerator ig = new ItemGenerator();

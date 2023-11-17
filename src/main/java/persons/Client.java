@@ -1,8 +1,8 @@
-package main.java.persons;
+package persons;
 
-import main.java.interaction.Interaction;
-import main.java.interfaces.Greetable;
-import main.java.items.Computer;
+import interaction.Interaction;
+import interfaces.Greetable;
+import items.Computer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

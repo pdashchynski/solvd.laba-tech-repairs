@@ -1,17 +1,13 @@
-package main.java;
-
-import main.java.custom.CustomLinkedListUsage;
-import main.java.interaction.Interaction;
+import custom.CustomLinkedListUsage;
+import interaction.Interaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Executor {
 
-    public static final Random RANDOM = new Random();
-    public static final Scanner IN = new Scanner(System.in);
+    private static final Scanner IN = new Scanner(System.in);
 
     static {
         System.setProperty("log4j.configurationFile", "log4j2.xml");

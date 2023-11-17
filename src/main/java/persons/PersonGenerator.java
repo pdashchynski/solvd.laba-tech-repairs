@@ -1,16 +1,16 @@
-package main.java.persons;
+package persons;
 
-import main.java.exceptions.InvalidAgeException;
-import main.java.interaction.Interaction;
+import exceptions.InvalidAgeException;
+import interaction.Interaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-
-import static main.java.Executor.RANDOM;
+import java.util.Random;
 
 public final class PersonGenerator {
 
+    private static final Random RANDOM = new Random();
     private static final Logger LOGGER = LogManager.getLogger(PersonGenerator.class);
     private static final String[] FIRST_NAME_MALE_ARRAY = new String[] {"Alex", "Boris", "Ivan", "Rich", "Az'akosh"};
     private static final String[] FIRST_NAME_FEMALE_ARRAY = new String[] {"Alex", "Sonya", "Agatha", "Kate", "Gorlock"};

@@ -1,6 +1,6 @@
-package main.java.buildings;
+package buildings;
 
-import main.java.persons.Employee;
+import persons.Employee;
 
 import java.util.*;
 

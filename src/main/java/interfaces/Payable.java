@@ -1,6 +1,6 @@
-package main.java.interfaces;
+package interfaces;
 
-import main.java.orders.Order;
+import orders.Order;
 
 public interface Payable {
 

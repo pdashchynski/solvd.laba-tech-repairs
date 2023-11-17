@@ -1,12 +1,13 @@
-package main.java.services;
+package services;
 
-import main.java.items.Computer;
-import main.java.items.ItemGenerator;
+import items.Computer;
+import items.ItemGenerator;
 
-import static main.java.Executor.RANDOM;
+import java.util.Random;
 
 public final class ServiceGenerator {
 
+    private static final Random RANDOM = new Random();
     private static final String[] SERVICE_TYPE_ARRAY = new String[] {"Cleaning", "Diagnostics", "Repair"};
     private static final int BASE_TIME = 24;
     private static final int BASE_COST = 100;

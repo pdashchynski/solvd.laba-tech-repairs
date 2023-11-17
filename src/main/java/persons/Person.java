@@ -1,4 +1,4 @@
-package main.java.persons;
+package persons;
 
 import java.util.ArrayList;
 import java.util.Objects;

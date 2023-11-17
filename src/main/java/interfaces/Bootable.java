@@ -1,7 +1,7 @@
-package main.java.interfaces;
+package interfaces;
 
-import main.java.exceptions.ComputerIsNotOKException;
-import main.java.orders.Order;
+import exceptions.ComputerIsNotOKException;
+import orders.Order;
 
 public interface Bootable {
 

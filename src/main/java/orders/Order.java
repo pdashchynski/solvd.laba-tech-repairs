@@ -1,10 +1,10 @@
-package main.java.orders;
+package orders;
 
-import main.java.items.Computer;
-import main.java.items.SparePart;
-import main.java.persons.Client;
-import main.java.persons.Master;
-import main.java.services.Service;
+import items.Computer;
+import items.SparePart;
+import persons.Client;
+import persons.Master;
+import services.Service;
 
 import java.util.ArrayList;
 

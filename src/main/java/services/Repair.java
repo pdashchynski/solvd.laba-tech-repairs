@@ -1,7 +1,7 @@
-package main.java.services;
+package services;
 
-import main.java.interaction.Interaction;
-import main.java.items.Item;
+import interaction.Interaction;
+import items.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,13 +1,14 @@
-package main.java.services;
+package services;
 
-import main.java.interaction.Interaction;
+import interaction.Interaction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static main.java.Executor.RANDOM;
+import java.util.Random;
 
 public class Diagnostics extends Service {
 
+    private static final Random RANDOM = new Random();
     private static final Logger LOGGER = LogManager.getLogger(Diagnostics.class);
     private boolean isOK;
 

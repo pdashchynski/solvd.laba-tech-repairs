@@ -1,6 +1,6 @@
-package main.java.interfaces;
+package interfaces;
 
-import main.java.persons.Person;
+import persons.Person;
 
 public interface Greetable {
 

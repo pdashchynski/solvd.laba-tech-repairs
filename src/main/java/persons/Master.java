@@ -1,11 +1,11 @@
-package main.java.persons;
+package persons;
 
-import main.java.interaction.Interaction;
-import main.java.interfaces.Payable;
-import main.java.interfaces.Taxable;
-import main.java.items.Computer;
-import main.java.items.Item;
-import main.java.orders.Order;
+import interaction.Interaction;
+import interfaces.Payable;
+import interfaces.Taxable;
+import items.Computer;
+import items.Item;
+import orders.Order;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

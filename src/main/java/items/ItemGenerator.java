@@ -1,16 +1,16 @@
-package main.java.items;
+package items;
 
-import main.java.exceptions.IllegalBrandNameException;
-import main.java.persons.Client;
+import exceptions.IllegalBrandNameException;
+import persons.Client;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
-
-import static main.java.Executor.RANDOM;
+import java.util.Random;
 
 public final class ItemGenerator {
 
+    private static final Random RANDOM = new Random();
     private static final Logger LOGGER = LogManager.getLogger(ItemGenerator.class);
     private static final String[] BRAND_NAME_ARRAY = new String[] {"AMD", "Nvidia", "Intel", "Lxino"};
     private static final String[] MODEL_NAME_ARRAY = new String[] {"100", "300", "400", "600", "700", "900"};

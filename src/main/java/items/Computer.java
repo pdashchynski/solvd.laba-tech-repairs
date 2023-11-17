@@ -1,13 +1,13 @@
-package main.java.items;
+package items;
 
-import main.java.exceptions.ComputerIsNotOKException;
-import main.java.interaction.Interaction;
-import main.java.interfaces.Bootable;
-import main.java.orders.Order;
-import main.java.orders.OrderGenerator;
-import main.java.persons.PersonGenerator;
-import main.java.services.Diagnostics;
-import main.java.services.ServiceGenerator;
+import exceptions.ComputerIsNotOKException;
+import interaction.Interaction;
+import interfaces.Bootable;
+import orders.Order;
+import orders.OrderGenerator;
+import persons.PersonGenerator;
+import services.Diagnostics;
+import services.ServiceGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

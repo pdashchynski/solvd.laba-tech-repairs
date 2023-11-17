@@ -19,6 +19,7 @@ public class CustomLinkedListUsage {
         cllList.set(1, 33);
         LOGGER.info(cllList);
         LOGGER.info(cllList.get(3));
+        LOGGER.info(cllList.getRandom());
         cllList.clear();
         LOGGER.info(cllList);
     }

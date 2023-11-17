@@ -1,5 +1,7 @@
 package com.solvd.laba.custom;
 
+import java.util.Random;
+
 public class CustomLinkedList<T> {
     node<T> head;
     node<T> tail;
@@ -113,6 +115,12 @@ public class CustomLinkedList<T> {
 
     public T get(int index) {
         return getNode(index).data;
+    }
+
+    public T getRandom() {
+        final Random RANDOM = new Random();
+        int rand = RANDOM.nextInt(size-1);
+        return get(rand);
     }
 
     private boolean isElementIndex(int index) {

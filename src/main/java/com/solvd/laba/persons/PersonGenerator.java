@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.UnaryOperator;
 
 public final class PersonGenerator {
 
@@ -33,6 +34,16 @@ public final class PersonGenerator {
         }
         return firstName;
     }
+
+    UnaryOperator<String> firstName = sex -> {
+        String firstName = "";
+        if (sex.equals("M")) {
+            firstName = FIRST_NAME_MALE_ARRAY[RANDOM.nextInt(FIRST_NAME_MALE_ARRAY.length)];
+        } else if (sex.equals("F")) {
+            firstName = FIRST_NAME_FEMALE_ARRAY[RANDOM.nextInt(FIRST_NAME_FEMALE_ARRAY.length)];
+        }
+        return firstName;
+    };
 
     public String personLastNameGenerate () {
         return LAST_NAME_ARRAY[RANDOM.nextInt(LAST_NAME_ARRAY.length)];
@@ -63,7 +74,8 @@ public final class PersonGenerator {
         }
         return new Client(
                 sex,
-                personFirstNameGenerate(sex),
+                firstName.apply(sex),
+                //personFirstNameGenerate(sex),
                 personLastNameGenerate(),
                 personPassportIDGenerate(),
                 age,

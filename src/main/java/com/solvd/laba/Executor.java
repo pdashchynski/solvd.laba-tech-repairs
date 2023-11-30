@@ -27,7 +27,5 @@ public class Executor {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        CustomLinkedListUsage.use();
     }
 }

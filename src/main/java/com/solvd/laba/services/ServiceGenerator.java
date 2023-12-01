@@ -5,6 +5,8 @@ import com.solvd.laba.items.ItemGenerator;
 
 import java.util.Random;
 
+import static com.solvd.laba.services.ServiceType.*;
+
 public final class ServiceGenerator {
 
     private static final Random RANDOM = new Random();
@@ -45,18 +47,18 @@ public final class ServiceGenerator {
     public Service serviceGenerate (Computer computer) {
         Service service = null;
 
-        String serviceType = serviceTypeGenerate();
+        String serviceType = ServiceType.getRandomServiceType();
 
         switch (serviceType) {
-            case "Cleaning":
+            case "CLEANING":
                 service = cleaningGenerate(serviceType);
                 break;
 
-            case "Diagnostics":
+            case "DIAGNOSTICS":
                 service = diagnosticsGenerate(serviceType);
                 break;
 
-            case "Repair":
+            case "REPAIR":
                 service = repairGenerate(serviceType, computer);
                 break;
 

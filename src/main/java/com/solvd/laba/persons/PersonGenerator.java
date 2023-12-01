@@ -35,7 +35,7 @@ public final class PersonGenerator {
         return firstName;
     }
 
-    UnaryOperator<String> firstName = sex -> {
+    public UnaryOperator<String> firstName = sex -> {
         String firstName = "";
         if (sex.equals("M")) {
             firstName = FIRST_NAME_MALE_ARRAY[RANDOM.nextInt(FIRST_NAME_MALE_ARRAY.length)];

@@ -2,6 +2,7 @@ package com.solvd.laba.persons;
 
 import com.solvd.laba.interfaces.Payable;
 import com.solvd.laba.interfaces.Taxable;
+import com.solvd.laba.interfaces.functional.LambdaTaxable;
 import com.solvd.laba.items.Computer;
 import com.solvd.laba.orders.Order;
 import org.apache.logging.log4j.LogManager;
@@ -53,6 +54,9 @@ public class Master extends Employee implements Payable, Taxable {
         LOGGER.info("Master " + getFirstName() + " " + getLastName() +
                 " should pay " + getSalary()/4 + " money as taxes this month");
     }
+
+    public LambdaTaxable<Integer> tax = Master -> getSalary() * 2;
+
 
     @Override
     public String toString () {

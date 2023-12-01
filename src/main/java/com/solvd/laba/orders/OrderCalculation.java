@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 public final class OrderCalculation {
 
@@ -76,4 +77,12 @@ public final class OrderCalculation {
         return totalTime;
     }
 
+    public static Function<Order, Integer> totalTime = order -> {
+        ServiceGenerator sg = new ServiceGenerator();
+        int totalTime = sg.getBaseTime() +
+                ( sg.getBaseTime() / order.getMaster().getQualification() ) +
+                calculateDelayTime(order);
+        order.setTotalTime(totalTime);
+        return totalTime;
+    };
 }

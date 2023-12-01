@@ -2,9 +2,11 @@ package com.solvd.laba.interaction;
 
 import com.solvd.laba.exceptions.ComputerIsNotOKException;
 import com.solvd.laba.exceptions.InvalidStringInputException;
+import com.solvd.laba.interfaces.functional.LambdaTaxable;
 import com.solvd.laba.items.Computer;
 import com.solvd.laba.items.ItemGenerator;
 import com.solvd.laba.orders.Order;
+import com.solvd.laba.orders.OrderCalculation;
 import com.solvd.laba.orders.OrderGenerator;
 import com.solvd.laba.persons.*;
 import com.solvd.laba.services.Service;
@@ -13,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 import static com.solvd.laba.orders.OrderCalculation.calculateTotalCost;
 import static com.solvd.laba.orders.OrderCalculation.calculateTotalTime;
@@ -74,7 +77,7 @@ public final class Interaction {
             Computer computer = order.getComputer();
             Master master = order.getMaster();
             Service service = order.getService();
-            int totalTime = calculateTotalTime(order);
+            int totalTime = OrderCalculation.totalTime.apply(order);
             int totalCost = calculateTotalCost(order);
 
             LOGGER.info(master.toString() + " " + service.getName() + " "
@@ -86,7 +89,8 @@ public final class Interaction {
             }
             master.payExtra(order);
             master.greet(client);
-            LOGGER.info("You should now pay " + totalCost + " moneys");
+            printTotalCost.accept(totalCost);
         }
     }
+    private Consumer<Integer> printTotalCost = totalCost -> LOGGER.info("You should now pay " + totalCost + " moneys");
 }

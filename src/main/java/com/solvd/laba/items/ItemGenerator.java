@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public final class ItemGenerator {
 
@@ -58,17 +59,21 @@ public final class ItemGenerator {
 
     public void clientAddComputersGenerate (Client client) {
         int amount = RANDOM.nextInt(3) + 1;
-        for (int i = 0; i < amount; i++) {
+ /*       for (int i = 0; i < amount; i++) {
             client.addComputerToComputerList(computerGenerate());
-        }
+        }*/
+        IntStream.range(0, amount)
+                .forEach(i -> client.addComputerToComputerList(computerGenerate()));
     }
 
     public void computerAddSparePartsGenerate (Computer computer) {
         int amount = RANDOM.nextInt(3) + 1;
         LOGGER.debug(amount + " parts");
-        for (int i = 0; i < amount; i++) {
+ /*       for (int i = 0; i < amount; i++) {
             computer.addSparePartToSparePartList(sparePartGenerate());
-        }
+        }*/
+        IntStream.range(0, amount)
+                .forEach(i -> computer.addSparePartToSparePartList(sparePartGenerate()));
     }
 
     public String[] getBrandNameArray() {

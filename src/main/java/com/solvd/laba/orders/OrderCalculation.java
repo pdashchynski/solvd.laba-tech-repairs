@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public final class OrderCalculation {
 
@@ -45,17 +46,25 @@ public final class OrderCalculation {
     }
 
     public static int calculateDelayTime (Order order) {
-        int delayTime = 0;
+        AtomicInteger delayTime = new AtomicInteger();
         if (order.getService().getName().equals("Repair")) {
-            for (int i = 0; i < order.getComputer().getSparePartList().size(); i++) {
+/*            for (int i = 0; i < order.getComputer().getSparePartList().size(); i++) {
                 if (!order.getComputer().getSparePartList().get(i).isAvailable()) {
                     delayTime += RANDOM.nextInt(7);
                     LOGGER.debug(delayTime + "delay");
                 }
-            }
+            }*/
+            order.getComputer()
+                    .getSparePartList()
+                    .stream()
+                    .filter(sparePart -> !sparePart.isAvailable())
+                    .forEach(sparePart -> {
+                        delayTime.addAndGet(RANDOM.nextInt(7));
+                        LOGGER.debug(delayTime + "delay");
+                    });
         }
-        order.setDelayTime(delayTime);
-        return delayTime;
+        order.setDelayTime(delayTime.get());
+        return delayTime.get();
     }
 
     public static int calculateTotalTime (Order order) {

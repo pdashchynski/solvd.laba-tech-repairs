@@ -1,13 +1,10 @@
 package com.solvd.laba;
 
-import com.solvd.laba.custom.ReflectionCreator;
-import com.solvd.laba.custom.ReflectionPrinter;
 import com.solvd.laba.interaction.Interaction;
-import com.solvd.laba.persons.Client;
+import com.solvd.laba.pooling.RunnableAndThreadTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 public class Executor {
@@ -31,7 +28,11 @@ public class Executor {
             e.printStackTrace();
         }*/
 
-        ReflectionPrinter.printClass("com.solvd.laba.persons.Client");
-        ReflectionCreator.createClass("com.solvd.laba.persons.Client");
+        //ReflectionPrinter.printClass("com.solvd.laba.persons.Client");
+        //ReflectionCreator.createClass("com.solvd.laba.persons.Client");
+
+        RunnableAndThreadTest t = new RunnableAndThreadTest();
+        t.test();
+        t.testNoName();
     }
 }

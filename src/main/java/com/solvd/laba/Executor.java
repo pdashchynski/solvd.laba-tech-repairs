@@ -1,6 +1,7 @@
 package com.solvd.laba;
 
 import com.solvd.laba.interaction.Interaction;
+import com.solvd.laba.pooling.Application;
 import com.solvd.laba.pooling.RunnableAndThreadTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,8 +32,12 @@ public class Executor {
         //ReflectionPrinter.printClass("com.solvd.laba.persons.Client");
         //ReflectionCreator.createClass("com.solvd.laba.persons.Client");
 
-        RunnableAndThreadTest t = new RunnableAndThreadTest();
+        /*RunnableAndThreadTest t = new RunnableAndThreadTest();
         t.test();
-        t.testNoName();
+        t.testNoName();*/
+
+        Application app = new Application();
+        app.launch();
+        //app.launchCF();
     }
 }

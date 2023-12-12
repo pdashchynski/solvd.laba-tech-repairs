@@ -2,7 +2,6 @@ package com.solvd.laba;
 
 import com.solvd.laba.interaction.Interaction;
 import com.solvd.laba.pooling.Application;
-import com.solvd.laba.pooling.RunnableAndThreadTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,9 +19,9 @@ public class Executor {
 
     public static void main(String[] args) {
 
-        Interaction interaction = new Interaction();
+/*        Interaction interaction = new Interaction();
 
-/*        try (IN) {
+        try (IN) {
             interaction.menuInput();
             interaction.menuOutput();
         } catch (Exception e) {
@@ -38,6 +37,6 @@ public class Executor {
 
         Application app = new Application();
         app.launch();
-        //app.launchCF();
+        app.launchCF();
     }
 }

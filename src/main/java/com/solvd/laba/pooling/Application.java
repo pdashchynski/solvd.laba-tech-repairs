@@ -1,10 +1,14 @@
 package com.solvd.laba.pooling;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Application {
+    private static final Logger LOGGER = LogManager.getLogger(RunnableExample.class);
 
     static {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -12,9 +16,11 @@ public class Application {
 
     public void launch() {
         ExecutorService executor = Executors.newFixedThreadPool(7);
-        for (int i = 0; i < 7; i++) {
-            Runnable worker = new RunnableExample(i);
-            Runnable workerT = new ThreadExample(i);
+        Runnable worker = new RunnableExample();
+        Runnable workerT = new ThreadExample();
+        executor.execute(worker);
+        executor.execute(workerT);
+        for (int i = 0; i < 5; i++) {
             executor.execute(worker);
             executor.execute(workerT);
         }
@@ -22,23 +28,15 @@ public class Application {
     }
 
     public void launchCF() {
-      /*  CompletableFuture<String> completableFuture = new CompletableFuture<>();
-
-        Executors.newCachedThreadPool().submit(() -> {
-            Thread.sleep(500);
-            completableFuture.complete("Hello");
-            return null;
-        });*/
-
-        for (int i = 1; i <= 7; i++) {
-            Connection connection = null;
-            try {
-                connection = ConnectionPool.getConnection();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            Runnable worker = new RunnableExample(i);
-            CompletableFuture.runAsync(worker);
+        ExecutorService executor = Executors.newFixedThreadPool(7);
+        Runnable worker = new RunnableExample();
+        Runnable workerT = new ThreadExample();
+        CompletableFuture.runAsync(worker, executor);
+        CompletableFuture.runAsync(workerT, executor);
+        for (int i = 0; i < 5; i++) {
+            CompletableFuture.runAsync(worker, executor);
+            CompletableFuture.runAsync(workerT, executor);
         }
+        executor.shutdown();
     }
 }

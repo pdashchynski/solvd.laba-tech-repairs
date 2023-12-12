@@ -34,11 +34,11 @@ public class ConnectionPool {
         return new Connection(number, url);
     }
 
-    public static synchronized Connection getConnection() throws InterruptedException {
+    public static Connection getConnection() throws InterruptedException {
         return CONNECTION_POOL.poll(10000, TimeUnit.MILLISECONDS);
     }
 
-    public static  void releaseConnection(Connection connection) throws InterruptedException {
+    public static void releaseConnection(Connection connection) throws InterruptedException {
         CONNECTION_POOL.offer(connection, 1000, TimeUnit.MILLISECONDS);
     }
 

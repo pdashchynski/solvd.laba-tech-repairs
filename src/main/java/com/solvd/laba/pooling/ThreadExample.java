@@ -4,19 +4,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ThreadExample extends Thread{
-    private static final String TEXT = "I'm thread";
     private static final int DURATION = 1000;
-    private int number;
     private static final Logger LOGGER = LogManager.getLogger(ThreadExample.class);
 
 
-    public ThreadExample(int number) {
-        this.number = number;
+    public ThreadExample() {
     }
 
     @Override
     public void run() {
-        //LOGGER.info(Thread.currentThread().getName() + " " + TEXT + " #" + number);
         Connection connection = null;
         try {
             connection = ConnectionPool.getConnection();
